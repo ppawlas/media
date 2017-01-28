@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * App\User
@@ -24,7 +24,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $gasReadings
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $waterReadings
  */
-class User extends Model
+class User extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.

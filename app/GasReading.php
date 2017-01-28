@@ -42,6 +42,15 @@ class GasReading extends Model
     ];
 
     /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'user',
+    ];
+
+    /**
      * Get the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
