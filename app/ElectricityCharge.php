@@ -32,8 +32,27 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\User $user
  */
 class ElectricityCharge extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'applies_from', 'applies_to', 'component_c', 'component_ssvn',
+        'component_szvnk', 'component_sop', 'component_sosj', 'component_os'
+    ];
+
+    /**
+     * Get the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

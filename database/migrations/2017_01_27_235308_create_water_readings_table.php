@@ -15,7 +15,7 @@ class CreateWaterReadingsTable extends Migration
         Schema::create('water_readings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->integer('previous_id')->unsigned()->unique()->nullable();
+            $table->integer('previous_id')->unsigned()->nullable();
             $table->date('date');
             $table->decimal('state', 9, 2);
             $table->boolean('fixed_usage')->default(false);

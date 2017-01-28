@@ -15,9 +15,17 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\GasReading::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => ($user = App\User::inRandomOrder()->first()) ? $user->id : factory(App\User::class)->create()->id,
+        'date' => $faker->date(),
+        'state' => $faker->randomFloat(2, 0, 9999999, 99),
+        'fixed_usage' => $faker->boolean(),
+        'usage' => $faker->randomFloat(2, 0, 9999999, 99),
     ];
 });

@@ -13,7 +13,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // set the observers
+        \App\WaterReading::observe(\App\Observers\WaterReadingObserver::class);
+        \App\GasReading::observe(\App\Observers\GasReadingObserver::class);
+        \App\GasInvoice::observe(\App\Observers\GasInvoiceObserver::class);
+        \App\ElectricityReading::observe(\App\Observers\ElectricityReadingObserver::class);
     }
 
     /**

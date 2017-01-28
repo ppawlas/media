@@ -26,8 +26,48 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereUsage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\WaterReading $next
+ * @property-read \App\WaterReading $previous
+ * @property-read \App\User $user
  */
 class WaterReading extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'date', 'state', 'fixed_usage', 'usage'
+    ];
+
+    /**
+     * Get the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Get the previous reading.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function previous()
+    {
+        return $this->belongsTo('App\WaterReading');
+    }
+
+    /**
+     * Get the next reading.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function next()
+    {
+        return $this->hasOne('App\WaterReading', 'previous_id');
+    }
 }

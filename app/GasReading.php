@@ -26,8 +26,48 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\GasReading whereUsage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GasReading whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\GasReading $next
+ * @property-read \App\GasReading $previous
+ * @property-read \App\User $user
  */
 class GasReading extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id', 'date', 'state', 'fixed_usage', 'usage'
+    ];
+
+    /**
+     * Get the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
+     * Get the previous reading.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function previous()
+    {
+        return $this->belongsTo('App\GasReading');
+    }
+
+    /**
+     * Get the next reading.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function next()
+    {
+        return $this->hasOne('App\GasReading', 'previous_id');
+    }
 }

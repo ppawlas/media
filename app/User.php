@@ -18,8 +18,79 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ElectricityCharge[] $electricityCharges
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\ElectricityReading[] $electricityReadings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasInvoice[] $gasInvoices
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $gasReadings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $waterReadings
  */
 class User extends Model
 {
-    //
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'email', 'password',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+    ];
+
+    /**
+     * Get the user's water readings.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function waterReadings()
+    {
+        return $this->hasMany('App\WaterReading');
+    }
+
+    /**
+     * Get the user's gas readings.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gasReadings()
+    {
+        return $this->hasMany('App\GasReading');
+    }
+
+    /**
+     * Get the user's gas invoices.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gasInvoices()
+    {
+        return $this->hasMany('App\GasInvoice');
+    }
+
+    /**
+     * Get the user's electricity charges.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function electricityCharges()
+    {
+        return $this->hasMany('App\ElectricityCharge');
+    }
+
+    /**
+     * Get the user's electricity readings.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function electricityReadings()
+    {
+        return $this->hasMany('App\ElectricityReading');
+    }
 }
