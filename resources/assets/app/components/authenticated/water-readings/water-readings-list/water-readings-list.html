@@ -13,9 +13,12 @@
                class="table table-striped" ng-if="$ctrl.waterReadings">
             <thead>
             <tr>
-                <th st-sort="date" st-sort-default="true" st-skip-natural="true">{{ 'DATE' | translate }}</th>
+                <th st-sort="date" st-sort-default="reverse" st-skip-natural="true">{{ 'DATE' | translate }}</th>
                 <th st-sort="state" st-skip-natural="true">{{ 'STATE' | translate }}</th>
                 <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
+                <th st-sort="daily" st-skip-natural="true">{{ 'DAILY' | translate }}</th>
+                <th st-sort="monthly_prediction" st-skip-natural="true">{{ 'MONTHLY_PREDICTION' | translate }}</th>
+                <th st-sort="yearly_prediction" st-skip-natural="true">{{ 'YEARLY_PREDICTION' | translate }}</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -34,6 +37,9 @@
                 </th>
                 <th></th>
                 <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -41,6 +47,9 @@
                 <td>{{ waterReading.date }}</td>
                 <td>{{ waterReading.state }}</td>
                 <td>{{ waterReading.usage }}</td>
+                <td>{{ waterReading.daily | number : 2 }}</td>
+                <td>{{ waterReading.monthly_prediction | number : 2 }}</td>
+                <td>{{ waterReading.yearly_prediction | number : 2 }}</td>
                 <td>
                     <button class="btn btn-xs btn-primary"
                             ui-sref="app.authenticated.water-readings.edit({id: waterReading.id})">

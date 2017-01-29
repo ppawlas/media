@@ -2,7 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
+use Log;
+use Storage;
 
 /**
  * App\WaterReading
@@ -32,6 +36,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class WaterReading extends Model
 {
+    use ReadingTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -47,8 +53,75 @@ class WaterReading extends Model
      * @var array
      */
     protected $hidden = [
-        'user',
+        'user', 'previous'
     ];
+
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['daily', 'monthly_prediction', 'yearly_prediction'];
+
+    /**
+     * Import water readings from the storage.
+     *
+     * @param User $user
+     */
+    public static function import(User $user)
+    {
+        Log::info('Attempt to import water readings for the user', ['user' => $user]);
+
+        DB::transaction(function ($user) use ($user) {
+            // delete previous readings
+            static::whereUserId($user->id)->delete();
+
+            // get the contents from the storage
+            $contents = Storage::disk('dump')->get(static::getDumpPath($user));
+
+            // parse the contents and iterate over parsed items
+            collect(explode(PHP_EOL, $contents))->map(function ($item) {
+                return explode(',', trim($item));
+            })->each(function ($item) use ($user) {
+                $reading = new static;
+                $reading->user_id = $user->id;
+                $reading->date = new Carbon($item[0]);
+                $reading->state = $item[1];
+                $reading->fixed_usage = $item[2] === 'true';
+                $reading->usage = $item[3] ? $item[3] : null;
+                $reading->save();
+            });
+        });
+
+        Log::info('Water readings have been successfully imported for the user', ['user' => $user]);
+    }
+
+    /**
+     * Save the water readings dump to the storage.
+     *
+     * @param User $user
+     */
+    public static function storeDump(User $user)
+    {
+        // generate the file contents
+        $contents = join(PHP_EOL, static::whereUserId($user->id)->get()->map(function ($item) {
+            return join(',', [$item->date, $item->state, $item->fixed_usage ? 'true' : 'false', $item->usage]);
+        })->toArray());
+
+        Log::info('Attempt to store the water readings dump for the user', ['user' => $user]);
+        Storage::disk('dump')->put(static::getDumpPath($user), $contents);
+    }
+
+    /**
+     * Get the path to water readings dump for the given user.
+     *
+     * @param User $user
+     * @return string
+     */
+    public static function getDumpPath(User $user)
+    {
+        return 'water-readings/' . $user->id . '.csv';
+    }
 
     /**
      * Get the user.
@@ -79,4 +152,5 @@ class WaterReading extends Model
     {
         return $this->hasOne('App\WaterReading', 'previous_id');
     }
+
 }

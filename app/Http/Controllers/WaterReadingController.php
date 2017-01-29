@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ImportRequest;
 use App\Http\Requests\WaterReadingRequest;
 use App\User;
 use App\WaterReading;
 use Exception;
+use Storage;
 
 class WaterReadingController extends Controller
 {
@@ -103,5 +105,50 @@ class WaterReadingController extends Controller
         }
         // there was no exception so return the deleted water reading
         return response()->json($waterReading, 200);
+    }
+
+    /**
+     * Import water readings.
+     *
+     * @param ImportRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function import(ImportRequest $request, User $user)
+    {
+        try {
+            // attempt to store the uploaded file
+            $request->dump->storeAs(WaterReading::getDumpPath($user), 'dump');
+            // if file has been uploaded, attempt to restore the data
+            WaterReading::import($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to import the dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // there was no exception so return the ok response
+        return response()->json([], 200);
+    }
+
+    /**
+     * Export water readings.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function export(User $user)
+    {
+        try {
+            // attempt to save the water readings dump to the storage
+            WaterReading::storeDump($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to save the water readings dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // get the full path to the dump file
+        $path = Storage::disk('dump')->getDriver()->getAdapter()->applyPathPrefix(WaterReading::getDumpPath($user));
+        // there was no exception so return the file from storage
+        return response()->download($path);
     }
 }

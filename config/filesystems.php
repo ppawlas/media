@@ -54,6 +54,11 @@ return [
             'visibility' => 'public',
         ],
 
+        'dump' => [
+            'driver' => 'local',
+            'root' => storage_path('app/dump'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => 'your-key',

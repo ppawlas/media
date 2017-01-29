@@ -49,7 +49,7 @@ class GasInvoice extends Model
      * @var array
      */
     protected $hidden = [
-        'user',
+        'user', 'previous'
     ];
 
     /**

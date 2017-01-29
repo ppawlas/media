@@ -33,7 +33,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['electricity-readings' => 'electricityReading']
         ]);
-        Route::resource('gas-invoices', 'GasInvoicesController', [
+        Route::resource('gas-invoices', 'GasInvoiceController', [
             'except' => ['create', 'edit'],
             'parameters' => ['gas-invoices' => 'gasInvoice']
         ]);
@@ -41,6 +41,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['gas-readings' => 'gasReading']
         ]);
+        Route::post('water-readings/import', 'WaterReadingController@import');
+        Route::get('water-readings/export', 'WaterReadingController@export');
         Route::resource('water-readings', 'WaterReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['water-readings' => 'waterReading']

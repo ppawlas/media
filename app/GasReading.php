@@ -47,7 +47,7 @@ class GasReading extends Model
      * @var array
      */
     protected $hidden = [
-        'user',
+        'user', 'previous'
     ];
 
     /**
