@@ -22,6 +22,7 @@
                 <th st-sort="state" st-skip-natural="true">{{ 'STATE' | translate }}</th>
                 <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
                 <th st-sort="charge" st-skip-natural="true">{{ 'CHARGE' | translate }}</th>
+                <th st-sort="price" st-skip-natural="true" ng-bind-html="'GAS_PRICE' | translate"></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -44,6 +45,7 @@
                 </th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -51,7 +53,8 @@
                 <td>{{ gasInvoice.date }}</td>
                 <td>{{ gasInvoice.state }}</td>
                 <td>{{ gasInvoice.usage }}</td>
-                <td>{{ gasInvoice.charge }}</td>
+                <td>{{ gasInvoice.charge | currency }}</td>
+                <td>{{ gasInvoice.price | currency }}</td>
                 <td>
                     <button class="btn btn-xs btn-primary"
                             ui-sref="app.authenticated.gas-invoices.edit({id: gasInvoice.id})">

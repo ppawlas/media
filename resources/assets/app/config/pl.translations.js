@@ -79,6 +79,7 @@ const PLTranslations = {
     'GAS_READINGS': 'Zużycie gazu',
     'ELECTRICITY_READINGS': 'Zużycie energii elektrycznej',
     'GAS_INVOICES': 'Faktury za gaz',
+    'GAS_PRICE': 'Cena za m<sup>3</sup>'
 };
 
 export default PLTranslations;

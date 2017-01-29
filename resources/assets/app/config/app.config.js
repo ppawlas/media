@@ -31,7 +31,7 @@ function AppConfig($httpProvider,
         .translations('pl', PLTranslations)
         .preferredLanguage('pl');
     // enable escaping of HTML
-    $translateProvider.useSanitizeValueStrategy('escape');
+    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
 
     // set the block ui config
     blockUIConfig.message = 'LOADING';

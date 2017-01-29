@@ -57,6 +57,13 @@ class GasInvoice extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['price'];
+
+    /**
      * Import gas invoices from the storage.
      *
      * @param User $user
@@ -145,5 +152,15 @@ class GasInvoice extends Model
     public function next()
     {
         return $this->hasOne('App\GasInvoice', 'previous_id');
+    }
+
+    /**
+     * Get price attribute.
+     *
+     * @return float
+     */
+    public function getPriceAttribute()
+    {
+        return $this->charge / $this->usage;
     }
 }
