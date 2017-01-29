@@ -1,5 +1,5 @@
 const AppConstants = {
-    'api': 'http://media.local/api/v1',
+    'api': process.env.API_URL + '/api/v1',
     'jwtKey': 'jwtToken'
 };
 

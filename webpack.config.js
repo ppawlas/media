@@ -50,6 +50,11 @@ module.exports = {
             minChunks: function (module, count) {
                 return module.resource && module.resource.indexOf(path.resolve(__dirname, 'resources/assets/app')) === -1;
             }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'API_URL': JSON.stringify(process.env.MEDIA_API_URL)
+            }
         })
     ]
 };

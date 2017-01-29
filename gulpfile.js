@@ -4,10 +4,10 @@ var rename = require('gulp-rename');
 var clean = require('gulp-clean');
 var webpack = require("webpack");
 var WebpackDevServer = require("webpack-dev-server");
-var configDev = require("./webpack.dev.config");
-var configProd = require("./webpack.prod.config");
 
 gulp.task("webpack-dev-server", function (callback) {
+    var configDev = require("./webpack.dev.config");
+
     // Start a webpack-dev-server
     var compiler = webpack(configDev);
 
@@ -24,6 +24,8 @@ gulp.task("webpack-dev-server", function (callback) {
 });
 
 gulp.task("webpack", function (callback) {
+    var configProd = require("./webpack.prod.config");
+
     // run webpack
     webpack(configProd, function (err, stats) {
         if (err) throw new gutil.PluginError("webpack", err);
