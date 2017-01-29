@@ -1,0 +1,35 @@
+<div class="panel panel-danger">
+
+    <div class="panel-heading">
+        <strong>{{ 'GAS_INVOICES' | translate }} - {{ 'IMPORT' | translate }}</strong>&nbsp;
+    </div>
+
+    <div class="gas-invoice-restore-form">
+
+        <div ng-form="gasInvoiceRestoreForm" class="form">
+
+            <div class="form-group" ng-class="{ 'has-error': gasInvoiceRestoreForm.file.$invalid }">
+
+                <input type="file" ngf-select ng-model="$ctrl.dumpFile" name="file"
+                       accept=".csv" ngf-max-size="2MB" required
+                       ngf-model-invalid="errorFile">
+
+            </div>
+
+            <button class="btn btn-danger" ng-click="$ctrl.restore($ctrl.dumpFile)"
+                    ng-disabled="gasInvoiceRestoreForm.$invalid"
+                    confirm="{{ 'CONFIRM_DATA_IMPORT' | translate }}">
+                {{ 'IMPORT' | translate }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        <a role="button" ui-sref="app.authenticated.gas-invoices.list">
+            <i class="fa fa-arrow-circle-left"></i> {{ 'BACK' | translate }}
+        </a>
+    </div>
+
+</div>

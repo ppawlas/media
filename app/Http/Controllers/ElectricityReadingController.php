@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\ElectricityReading;
 use App\Http\Requests\ElectricityReadingRequest;
+use App\Http\Requests\ImportRequest;
 use App\User;
 use Exception;
+use Storage;
 
 class ElectricityReadingController extends Controller
 {
@@ -103,5 +105,50 @@ class ElectricityReadingController extends Controller
         }
         // there was no exception so return the deleted electricity reading
         return response()->json($electricityReading, 200);
+    }
+
+    /**
+     * Restore electricity readings.
+     *
+     * @param ImportRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function restore(ImportRequest $request, User $user)
+    {
+        try {
+            // attempt to store the uploaded file
+            $request->file('dump')->storeAs('electricity-readings', $user->id . '.csv', 'dump');
+            // if file has been uploaded, attempt to restore the data
+            ElectricityReading::import($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to import the dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // there was no exception so return the ok response
+        return response()->json([], 200);
+    }
+
+    /**
+     * Dump electricity readings.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function dump(User $user)
+    {
+        try {
+            // attempt to save the electricity readings dump to the storage
+            ElectricityReading::storeDump($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to save the electricity readings dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // get the full path to the dump file
+        $path = Storage::disk('dump')->getDriver()->getAdapter()->applyPathPrefix(ElectricityReading::getDumpPath($user));
+        // there was no exception so return the file from storage
+        return response()->download($path, null, ['Content-Type' => 'text/csv']);
     }
 }

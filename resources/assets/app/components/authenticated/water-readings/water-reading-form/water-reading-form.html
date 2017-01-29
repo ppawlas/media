@@ -24,7 +24,7 @@
                        parse-float>
                 <div class="help-block" ng-messages="waterReadingForm.state.$error" ng-messages-multiple>
                     <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
-                    <p ng-message="pattern">{{ 'READING_PATTERN' | translate}}</p>
+                    <p ng-message="pattern">{{ 'NUMERIC_PATTERN' | translate}}</p>
                     <p ng-message="number">{{ 'NOT_A_NUMBER' | translate}}</p>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                        ng-disabled="!$ctrl.waterReading.fixed_usage">
                 <div class="help-block" ng-messages="waterReadingForm.usage.$error" ng-messages-multiple>
                     <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
-                    <p ng-message="pattern">{{ 'READING_PATTERN' | translate}}</p>
+                    <p ng-message="pattern">{{ 'NUMERIC_PATTERN' | translate}}</p>
                     <p ng-message="number">{{ 'NOT_A_NUMBER' | translate}}</p>
                 </div>
             </div>

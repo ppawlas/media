@@ -29,14 +29,20 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['electricity-charges' => 'electricityCharge']
         ]);
+        Route::post('electricity-readings/restore', 'ElectricityReadingController@restore');
+        Route::get('electricity-readings/dump', 'ElectricityReadingController@dump');
         Route::resource('electricity-readings', 'ElectricityReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['electricity-readings' => 'electricityReading']
         ]);
+        Route::post('gas-invoices/restore', 'GasInvoiceController@restore');
+        Route::get('gas-invoices/dump', 'GasInvoiceController@dump');
         Route::resource('gas-invoices', 'GasInvoiceController', [
             'except' => ['create', 'edit'],
             'parameters' => ['gas-invoices' => 'gasInvoice']
         ]);
+        Route::post('gas-readings/restore', 'GasReadingController@restore');
+        Route::get('gas-readings/dump', 'GasReadingController@dump');
         Route::resource('gas-readings', 'GasReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['gas-readings' => 'gasReading']

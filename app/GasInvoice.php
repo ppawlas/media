@@ -2,7 +2,11 @@
 
 namespace App;
 
+use Carbon\Carbon;
+use DB;
 use Illuminate\Database\Eloquent\Model;
+use Log;
+use Storage;
 
 /**
  * App\GasInvoice
@@ -51,6 +55,67 @@ class GasInvoice extends Model
     protected $hidden = [
         'user', 'previous'
     ];
+
+    /**
+     * Import gas invoices from the storage.
+     *
+     * @param User $user
+     */
+    public static function import(User $user)
+    {
+        Log::info('Attempt to import gas invoices for the user', ['user' => $user]);
+
+        DB::transaction(function ($user) use ($user) {
+            // delete previous invoices
+            static::whereUserId($user->id)->delete();
+
+            // get the contents from the storage
+            $contents = Storage::disk('dump')->get(static::getDumpPath($user));
+
+            // parse the contents and iterate over parsed items
+            collect(explode(PHP_EOL, $contents))->map(function ($item) {
+                return explode(',', trim($item));
+            })->each(function ($item) use ($user) {
+                $invoice = new static;
+                $invoice->user_id = $user->id;
+                $invoice->date = new Carbon($item[0]);
+                $invoice->state = $item[1];
+                $invoice->fixed_usage = $item[2] === 'true';
+                $invoice->usage = $item[3] ? $item[3] : null;
+                $invoice->charge = $item[4];
+                $invoice->save();
+            });
+        });
+
+        Log::info('Gas readings have been successfully imported for the user', ['user' => $user]);
+    }
+
+    /**
+     * Save the gas invoices dump to the storage.
+     *
+     * @param User $user
+     */
+    public static function storeDump(User $user)
+    {
+        // generate the file contents
+        $contents = join(PHP_EOL, static::whereUserId($user->id)->orderBy('id')->get()->map(function ($item) {
+            return join(',', [$item->date, $item->state, $item->fixed_usage ? 'true' : 'false', $item->usage, $item->charge]);
+        })->toArray());
+
+        Log::info('Attempt to store the gas invoices dump for the user', ['user' => $user]);
+        Storage::disk('dump')->put(static::getDumpPath($user), $contents);
+    }
+
+    /**
+     * Get the path to gas invoices dump for the given user.
+     *
+     * @param User $user
+     * @return string
+     */
+    public static function getDumpPath(User $user)
+    {
+        return 'gas-invoices/' . $user->id . '.csv';
+    }
 
     /**
      * Get the user.

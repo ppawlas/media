@@ -29,10 +29,10 @@ class WaterReadingsListController {
     dump() {
         this._WaterReadings.dump().then(
             res => {
-                this._Messages.showMessage('READING_EXPORTED', 'success');
+                this._Messages.showMessage('DATA_EXPORTED', 'success');
             },
             err => {
-                this._Messages.showMessage('READING_EXPORT_ERROR', 'error');
+                this._Messages.showMessage('DATA_EXPORT_ERROR', 'error');
             }
         )
     }

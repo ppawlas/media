@@ -1,4 +1,4 @@
-import "./water-reading-restore.scss";
+import "./water-readings-restore.scss";
 import template from "./water-readings-restore.html";
 import controller from "./water-readings-restore.controller";
 

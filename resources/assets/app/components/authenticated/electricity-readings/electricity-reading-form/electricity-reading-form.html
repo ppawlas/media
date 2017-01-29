@@ -1,0 +1,70 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'ELECTRICITY_READINGS' | translate }} - {{ $ctrl.title | translate }}</strong>
+    </div>
+
+    <div class="electricity-reading-form">
+
+        <div ng-form="electricityReadingForm" class="form">
+
+            <universal-datepicker dt="$ctrl.electricityReading.date"
+                                  form-name="electricityReadingForm" field-name="date"
+                                  field-label="DATE"
+                                  on-dt-change="$ctrl.setDate($event)"
+                                  required="true">
+            </universal-datepicker>
+
+            <div class="form-group" ng-class="{ 'has-error': electricityReadingForm.state.$invalid }">
+                <label for="state" class="control-label">{{ 'STATE' | translate }}</label>
+                <input type="number" class="form-control" id="state" name="state" required
+                       ng-pattern="/^\d{1,7}(\.\d{0,2})?$/"
+                       placeholder="{{ 'STATE' | translate }}"
+                       ng-model="$ctrl.electricityReading.state"
+                       parse-float>
+                <div class="help-block" ng-messages="electricityReadingForm.state.$error" ng-messages-multiple>
+                    <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
+                    <p ng-message="pattern">{{ 'NUMERIC_PATTERN' | translate}}</p>
+                    <p ng-message="number">{{ 'NOT_A_NUMBER' | translate}}</p>
+                </div>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="$ctrl.electricityReading.fixed_usage">
+                    {{ 'FIXED_USAGE' | translate }}
+                </label>
+            </div>
+
+            <div class="form-group" ng-class="{ 'has-error': electricityReadingForm.usage.$invalid }"
+                 ng-show="$ctrl.edit || $ctrl.electricityReading.fixed_usage">
+                <label for="usage" class="control-label">{{ 'USAGE' | translate }}</label>
+                <input type="number" class="form-control" id="usage" name="usage"
+                       ng-required="$ctrl.electricityReading.fixed_usage"
+                       ng-pattern="/^\d{1,7}(\.\d{0,2})?$/"
+                       placeholder="{{ 'USAGE' | translate }}"
+                       ng-model="$ctrl.electricityReading.usage"
+                       parse-float
+                       ng-disabled="!$ctrl.electricityReading.fixed_usage">
+                <div class="help-block" ng-messages="electricityReadingForm.usage.$error" ng-messages-multiple>
+                    <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
+                    <p ng-message="pattern">{{ 'NUMERIC_PATTERN' | translate}}</p>
+                    <p ng-message="number">{{ 'NOT_A_NUMBER' | translate}}</p>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" ng-click="$ctrl.submit()" ng-disabled="electricityReadingForm.$invalid">
+                {{ 'SAVE' | translate }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        <a role="button" ui-sref="app.authenticated.electricity-readings.list">
+            <i class="fa fa-arrow-circle-left"></i> {{ 'BACK' | translate }}
+        </a>
+    </div>
+
+</div>

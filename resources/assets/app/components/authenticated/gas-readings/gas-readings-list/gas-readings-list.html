@@ -1,0 +1,79 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'GAS_READINGS' | translate }}</strong>&nbsp;
+        <div class="pull-right">
+            <button class="btn btn-xs btn-default" ng-click="$ctrl.dump()">
+                <i class="fa fa-cloud-download"></i> {{ 'EXPORT' | translate }}
+            </button>
+            <button class="btn btn-xs btn-default" ui-sref="app.authenticated.gas-readings.create">
+                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+
+        <table st-table="$ctrl.table.gasReadings" st-safe-src="$ctrl.gasReadings"
+               class="table table-striped" ng-if="$ctrl.gasReadings">
+            <thead>
+            <tr>
+                <th st-sort="date" st-sort-default="reverse" st-skip-natural="true">{{ 'DATE' | translate }}</th>
+                <th st-sort="state" st-skip-natural="true">{{ 'STATE' | translate }}</th>
+                <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
+                <th st-sort="daily" st-skip-natural="true">{{ 'DAILY' | translate }}</th>
+                <th st-sort="monthly_prediction" st-skip-natural="true">{{ 'MONTHLY_PREDICTION' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <input st-search="date" placeholder="{{ 'DATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="state" placeholder="{{ 'STATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="usage" placeholder="{{ 'USAGE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="gasReading in $ctrl.table.gasReadings | itemsPerPage: 10">
+                <td>{{ gasReading.date }}</td>
+                <td>{{ gasReading.state }}</td>
+                <td>{{ gasReading.usage }}</td>
+                <td>{{ gasReading.daily | number : 2 }}</td>
+                <td>{{ gasReading.monthly_prediction | number : 2 }}</td>
+                <td>
+                    <button class="btn btn-xs btn-primary"
+                            ui-sref="app.authenticated.gas-readings.edit({id: gasReading.id})">
+                        <i class="fa fa-pencil"></i> {{ 'EDIT' | translate }}
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-xs btn-danger " ng-click="$ctrl.destroy(gasReading.id)"
+                            confirm="{{ 'CONFIRM_READING_DELETE' | translate }}">
+                        <i class="fa fa-trash"></i> {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <div class="text-center">
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+
+</div>

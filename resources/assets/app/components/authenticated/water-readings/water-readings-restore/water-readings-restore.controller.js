@@ -11,11 +11,11 @@ class WaterReadingsRestoreController {
         this._WaterReadings.restore(
             file,
             res => {
-                this._Messages.setMessage('READING_IMPORTED', 'success');
+                this._Messages.setMessage('DATA_IMPORTED', 'success');
                 this._$state.go('app.authenticated.water-readings.list', {}, {reload: true});
             },
             err => {
-                this._Messages.showMessage('READING_IMPORT_ERROR', 'error');
+                this._Messages.showMessage('DATA_IMPORT_ERROR', 'error');
             }
         );
     }

@@ -23,22 +23,89 @@
                         <i class="fa fa-home"></i> {{ 'DASHBOARD' | translate }}
                     </a>
                 </li>
-                <li>
-                    <a role="button" ui-sref="app.authenticated.gas-readings.list">
-                        <i class="fa fa-fire"></i> {{ 'GAS_READINGS' | translate }}
+
+                <!--gas readings-->
+                <li class="dropdown" uib-dropdown is-open="$ctrl.gasReadingsNav.isopen">
+
+                    <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                        <i class="fa fa-fire"></i> {{ 'GAS_READINGS' | translate }} <span class="caret"></span>
                     </a>
-                </li>
-                <li>
-                    <a role="button" ui-sref="app.authenticated.gas-invoices.list">
-                        <i class="fa fa-file"></i> {{ 'GAS_INVOICES' | translate }}
-                    </a>
-                </li>
-                <li>
-                    <a role="button" ui-sref="app.authenticated.electricity-readings.list">
-                        <i class="fa fa-lightbulb-o"></i> {{ 'ELECTRICITY_READINGS' | translate }}
-                    </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-readings.list">
+                                <i class="fa fa-list"></i> {{ 'LIST' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-readings.create">
+                                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-readings.restore">
+                                <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+
                 </li>
 
+                <!--gas invoices-->
+                <li class="dropdown" uib-dropdown is-open="$ctrl.gasInvoicesNav.isopen">
+
+                    <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                        <i class="fa fa-file"></i> {{ 'GAS_INVOICES' | translate }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.list">
+                                <i class="fa fa-list"></i> {{ 'LIST' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.create">
+                                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.restore">
+                                <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <!--electricity readings-->
+                <li class="dropdown" uib-dropdown is-open="$ctrl.electricityReadingsNav.isopen">
+
+                    <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                        <i class="fa fa-lightbulb-o"></i> {{ 'ELECTRICITY' | translate }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.list">
+                                <i class="fa fa-list"></i> {{ 'LIST' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.create">
+                                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.restore">
+                                <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
+                <!--water readings-->
                 <li class="dropdown" uib-dropdown is-open="$ctrl.waterReadingsNav.isopen">
 
                     <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
@@ -64,6 +131,7 @@
                     </ul>
 
                 </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

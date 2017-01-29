@@ -1,0 +1,82 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'ELECTRICITY_READINGS' | translate }}</strong>&nbsp;
+        <div class="pull-right">
+            <button class="btn btn-xs btn-default" ng-click="$ctrl.dump()">
+                <i class="fa fa-cloud-download"></i> {{ 'EXPORT' | translate }}
+            </button>
+            <button class="btn btn-xs btn-default" ui-sref="app.authenticated.electricity-readings.create">
+                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+            </button>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+
+        <table st-table="$ctrl.table.electricityReadings" st-safe-src="$ctrl.electricityReadings"
+               class="table table-striped" ng-if="$ctrl.electricityReadings">
+            <thead>
+            <tr>
+                <th st-sort="date" st-sort-default="reverse" st-skip-natural="true">{{ 'DATE' | translate }}</th>
+                <th st-sort="state" st-skip-natural="true">{{ 'STATE' | translate }}</th>
+                <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
+                <th st-sort="daily" st-skip-natural="true">{{ 'DAILY' | translate }}</th>
+                <th st-sort="monthly_prediction" st-skip-natural="true">{{ 'MONTHLY_PREDICTION' | translate }}</th>
+                <th st-sort="yearly_prediction" st-skip-natural="true">{{ 'YEARLY_PREDICTION' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <input st-search="date" placeholder="{{ 'DATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="state" placeholder="{{ 'STATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="usage" placeholder="{{ 'USAGE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="electricityReading in $ctrl.table.electricityReadings | itemsPerPage: 10">
+                <td>{{ electricityReading.date }}</td>
+                <td>{{ electricityReading.state }}</td>
+                <td>{{ electricityReading.usage }}</td>
+                <td>{{ electricityReading.daily | number : 2 }}</td>
+                <td>{{ electricityReading.monthly_prediction | number : 2 }}</td>
+                <td>{{ electricityReading.yearly_prediction | number : 2 }}</td>
+                <td>
+                    <button class="btn btn-xs btn-primary"
+                            ui-sref="app.authenticated.electricity-readings.edit({id: electricityReading.id})">
+                        <i class="fa fa-pencil"></i> {{ 'EDIT' | translate }}
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-xs btn-danger " ng-click="$ctrl.destroy(electricityReading.id)"
+                            confirm="{{ 'CONFIRM_READING_DELETE' | translate }}">
+                        <i class="fa fa-trash"></i> {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <div class="text-center">
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+
+</div>

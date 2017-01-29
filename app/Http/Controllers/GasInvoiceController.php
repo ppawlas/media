@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\GasInvoice;
 use App\Http\Requests\GasInvoiceRequest;
+use App\Http\Requests\ImportRequest;
 use App\User;
 use Exception;
+use Storage;
 
 class GasInvoiceController extends Controller
 {
@@ -103,5 +105,50 @@ class GasInvoiceController extends Controller
         }
         // there was no exception so return the deleted gas invoice
         return response()->json($gasInvoice, 200);
+    }
+
+    /**
+     * Restore gas invoices.
+     *
+     * @param ImportRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function restore(ImportRequest $request, User $user)
+    {
+        try {
+            // attempt to store the uploaded file
+            $request->file('dump')->storeAs('gas-invoices', $user->id . '.csv', 'dump');
+            // if file has been uploaded, attempt to restore the data
+            GasInvoice::import($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to import the dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // there was no exception so return the ok response
+        return response()->json([], 200);
+    }
+
+    /**
+     * Dump gas invoices.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function dump(User $user)
+    {
+        try {
+            // attempt to save the gas invoices dump to the storage
+            GasInvoice::storeDump($user);
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to save the gas invoices dump
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // get the full path to the dump file
+        $path = Storage::disk('dump')->getDriver()->getAdapter()->applyPathPrefix(GasInvoice::getDumpPath($user));
+        // there was no exception so return the file from storage
+        return response()->download($path, null, ['Content-Type' => 'text/csv']);
     }
 }
