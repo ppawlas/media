@@ -1,0 +1,7 @@
+*
+!electricity-charges/
+!electricity-readings/
+!gas-invoices/
+!gas-readings/
+!water-readings/
+!.gitignore
