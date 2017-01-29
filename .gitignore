@@ -7,3 +7,5 @@ Homestead.yaml
 .env
 _ide_helper.php
 npm-debug.log
+/public_html
+.htaccess
