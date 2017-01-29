@@ -2,6 +2,7 @@ const ConfirmDirective = ($uibModal) => {
     'ngInject';
 
     return {
+        priority: 1,
         restrict: 'A',
         scope: {
             confirmIf: '=',

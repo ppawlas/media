@@ -1,0 +1,68 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'WATER_READINGS' | translate }}</strong>&nbsp;
+        <button class="btn btn-xs btn-default pull-right " ui-sref="app.authenticated.water-readings.create">
+            <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+        </button>
+    </div>
+
+    <div class="table-responsive">
+
+        <table st-table="$ctrl.table.waterReadings" st-safe-src="$ctrl.waterReadings"
+               class="table table-striped" ng-if="$ctrl.waterReadings">
+            <thead>
+            <tr>
+                <th st-sort="date" st-sort-default="true" st-skip-natural="true">{{ 'DATE' | translate }}</th>
+                <th st-sort="state" st-skip-natural="true">{{ 'STATE' | translate }}</th>
+                <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>
+                    <input st-search="date" placeholder="{{ 'DATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="state" placeholder="{{ 'STATE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="usage" placeholder="{{ 'USAGE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="waterReading in $ctrl.table.waterReadings | itemsPerPage: 10">
+                <td>{{ waterReading.date }}</td>
+                <td>{{ waterReading.state }}</td>
+                <td>{{ waterReading.usage }}</td>
+                <td>
+                    <button class="btn btn-xs btn-primary"
+                            ui-sref="app.authenticated.water-readings.edit({id: waterReading.id})">
+                        <i class="fa fa-pencil"></i> {{ 'EDIT' | translate }}
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-xs btn-danger " ng-click="$ctrl.delete(waterReading.id)"
+                            confirm="{{ 'CONFIRM_READING_DELETE' | translate }}">
+                        <i class="fa fa-trash"></i> {{ 'DELETE' | translate }}
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <div class="text-center">
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+
+</div>

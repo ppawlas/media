@@ -1,12 +1,14 @@
 import angular from "angular";
 import uiRouter from "angular-ui-router";
 import Dashboard from "./dashboard/dashboard";
+import WaterReadings from "./water-readings/water-readings";
 import AuthenticatedComponent from "./authenticated.component";
 
 let AuthenticatedModule = angular
     .module('app.components.authenticated', [
         uiRouter,
-        Dashboard
+        Dashboard,
+        WaterReadings
     ])
     .config(($stateProvider) => {
         'ngInject';

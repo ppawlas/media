@@ -25,10 +25,25 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
         'prefix' => 'users/{user}',
         'middleware' => 'can:access,user'
     ], function () {
-        Route::resource('electricity-charges', 'ElectricityChargeController', ['except' => ['create', 'edit']]);
-        Route::resource('electricity-readings', 'ElectricityReadingController', ['except' => ['create', 'edit']]);
-        Route::resource('gas-invoices', 'GasInvoicesController', ['except' => ['create', 'edit']]);
-        Route::resource('gas-readings', 'GasReadingController', ['except' => ['create', 'edit']]);
-        Route::resource('water-readings', 'WaterReadingController', ['except' => ['create', 'edit']]);
+        Route::resource('electricity-charges', 'ElectricityChargeController', [
+            'except' => ['create', 'edit'],
+            'parameters' => ['electricity-charges' => 'electricityCharge']
+        ]);
+        Route::resource('electricity-readings', 'ElectricityReadingController', [
+            'except' => ['create', 'edit'],
+            'parameters' => ['electricity-readings' => 'electricityReading']
+        ]);
+        Route::resource('gas-invoices', 'GasInvoicesController', [
+            'except' => ['create', 'edit'],
+            'parameters' => ['gas-invoices' => 'gasInvoice']
+        ]);
+        Route::resource('gas-readings', 'GasReadingController', [
+            'except' => ['create', 'edit'],
+            'parameters' => ['gas-readings' => 'gasReading']
+        ]);
+        Route::resource('water-readings', 'WaterReadingController', [
+            'except' => ['create', 'edit'],
+            'parameters' => ['water-readings' => 'waterReading']
+        ]);
     });
 });

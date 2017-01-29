@@ -1,0 +1,51 @@
+<div class="form-group" ng-class="{ 'has-error': $ctrl.getFormField().$invalid }">
+
+    <!--label-->
+    <label ng-if="$ctrl.fieldLabel" class="control-label">{{ $ctrl.fieldLabel | translate }}</label>
+
+    <!--input-->
+    <p class="input-group">
+
+        <input type="text" class="form-control" uib-datepicker-popup="{{ $ctrl.format }}"
+               ng-model="$ctrl.dt"
+               ng-model-options="$ctrl.modelOptions"
+               is-open="$ctrl.opened"
+               datepicker-options="$ctrl.dateOptions"
+               close-text="{{ 'CANCEL' | translate }}"
+               current-text="{{ 'TODAY' | translate }}"
+               clear-text="{{ 'CLEAR' | translate }}"
+               name="{{ $ctrl.fieldName }}"
+               ng-required="$ctrl.required"
+               min-date="{{ $ctrl.minDt }}"
+               max-date="{{ $ctrl.maxDt }}"
+               ng-change="$ctrl.onChange()"
+               ng-disabled="$ctrl.disabled">
+
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.open()" ng-disabled="$ctrl.disabled">
+                <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+        </span>
+    </p>
+
+    <!--messages-->
+    <div class="help-block" ng-messages="$ctrl.getFormField().$error">
+        <p ng-message="required">{{ 'REQUIRED_FIELD' | translate }}</p>
+        <p ng-message="date">{{ 'INVALID_DATE' | translate }}</p>
+        <p ng-message="minDate">
+            {{
+            $ctrl.minDtLabel ?
+            ('MIN_DATE_WITH_FIELD' | translate) + ' ' + ($ctrl.minDtLabel | translate) + '.' :
+            'MIN_DATE_GENERIC' | translate
+            }}
+        </p>
+        <p ng-message="maxDate">
+            {{
+            $ctrl.maxDtLabel ?
+            ('MAX_DATE_WITH_FIELD' | translate) + ' ' + ($ctrl.maxDtLabel | translate) + '.' :
+            'MAX_DATE_GENERIC' | translate
+            }}
+        </p>
+    </div>
+
+</div>
