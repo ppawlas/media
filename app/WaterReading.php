@@ -104,7 +104,7 @@ class WaterReading extends Model
     public static function storeDump(User $user)
     {
         // generate the file contents
-        $contents = join(PHP_EOL, static::whereUserId($user->id)->get()->map(function ($item) {
+        $contents = join(PHP_EOL, static::whereUserId($user->id)->orderBy('id')->get()->map(function ($item) {
             return join(',', [$item->date, $item->state, $item->fixed_usage ? 'true' : 'false', $item->usage]);
         })->toArray());
 

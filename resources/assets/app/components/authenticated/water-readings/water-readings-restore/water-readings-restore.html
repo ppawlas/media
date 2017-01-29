@@ -1,0 +1,35 @@
+<div class="panel panel-danger">
+
+    <div class="panel-heading">
+        <strong>{{ 'WATER_READINGS' | translate }} - {{ 'IMPORT' | translate }}</strong>&nbsp;
+    </div>
+
+    <div class="water-reading-restore-form">
+
+        <div ng-form="waterReadingRestoreForm" class="form">
+
+            <div class="form-group" ng-class="{ 'has-error': waterReadingRestoreForm.file.$invalid }">
+
+                <input type="file" ngf-select ng-model="$ctrl.dumpFile" name="file"
+                       accept=".csv" ngf-max-size="2MB" required
+                       ngf-model-invalid="errorFile">
+
+            </div>
+
+            <button class="btn btn-danger" ng-click="$ctrl.restore($ctrl.dumpFile)"
+                    ng-disabled="waterReadingRestoreForm.$invalid"
+                    confirm="{{ 'CONFIRM_READING_IMPORT' | translate }}">
+                {{ 'IMPORT' | translate }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        <a role="button" ui-sref="app.authenticated.water-readings.list">
+            <i class="fa fa-arrow-circle-left"></i> {{ 'BACK' | translate }}
+        </a>
+    </div>
+
+</div>

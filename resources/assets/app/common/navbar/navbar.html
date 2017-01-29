@@ -38,10 +38,31 @@
                         <i class="fa fa-lightbulb-o"></i> {{ 'ELECTRICITY_READINGS' | translate }}
                     </a>
                 </li>
-                <li>
-                    <a role="button" ui-sref="app.authenticated.water-readings.list">
-                        <i class="fa fa-tint"></i> {{ 'WATER_READINGS' | translate }}
+
+                <li class="dropdown" uib-dropdown is-open="$ctrl.waterReadingsNav.isopen">
+
+                    <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                        <i class="fa fa-tint"></i> {{ 'WATER' | translate }} <span class="caret"></span>
                     </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.water-readings.list">
+                                <i class="fa fa-list"></i> {{ 'LIST' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.water-readings.create">
+                                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.water-readings.restore">
+                                <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+
                 </li>
             </ul>
 

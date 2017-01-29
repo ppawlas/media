@@ -15,6 +15,7 @@ import ngTranslate from "angular-translate";
 import ngSmartTable from "angular-smart-table";
 import blockUI from "angular-block-ui";
 import dirPagination from "angular-utils-pagination";
+import ngFileUpload from "ng-file-upload";
 import AppConfig from "./config/app.config";
 import AppRun from "./config/app.run";
 import AppConstants from "./config/app.constants";
@@ -37,6 +38,7 @@ angular
         ngSmartTable,
         blockUI,
         dirPagination,
+        ngFileUpload,
         Common,
         Components
     ])

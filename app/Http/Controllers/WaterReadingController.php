@@ -108,13 +108,13 @@ class WaterReadingController extends Controller
     }
 
     /**
-     * Import water readings.
+     * Restore water readings.
      *
      * @param ImportRequest $request
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function import(ImportRequest $request, User $user)
+    public function restore(ImportRequest $request, User $user)
     {
         try {
             // attempt to store the uploaded file
@@ -131,12 +131,12 @@ class WaterReadingController extends Controller
     }
 
     /**
-     * Export water readings.
+     * Dump water readings.
      *
      * @param User $user
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\BinaryFileResponse
      */
-    public function export(User $user)
+    public function dump(User $user)
     {
         try {
             // attempt to save the water readings dump to the storage
@@ -149,6 +149,6 @@ class WaterReadingController extends Controller
         // get the full path to the dump file
         $path = Storage::disk('dump')->getDriver()->getAdapter()->applyPathPrefix(WaterReading::getDumpPath($user));
         // there was no exception so return the file from storage
-        return response()->download($path);
+        return response()->download($path, null, ['Content-Type' => 'text/csv']);
     }
 }

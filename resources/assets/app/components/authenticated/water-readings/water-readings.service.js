@@ -1,9 +1,11 @@
 class WaterReadingsService {
-    constructor($http, Auth, AppConstants) {
+    constructor($http, Auth, FileSaver, Upload, AppConstants) {
         'ngInject';
 
         this._$http = $http;
         this._Auth = Auth;
+        this._FileSaver = FileSaver;
+        this._Upload = Upload;
         this._AppConstants = AppConstants;
     }
 
@@ -42,6 +44,25 @@ class WaterReadingsService {
             url: this._getBaseUrl(id),
             method: 'DELETE'
         }).then(res => res.data);
+    }
+
+    dump() {
+        return this._$http({
+            url: this._getBaseUrl() + '/dump',
+            method: 'GET',
+            responseType: 'blob'
+        }).then(res => {
+            this._FileSaver.saveAs(res.data, 'water-readings.csv');
+        });
+    }
+
+    restore(file, onSuccess, onError) {
+        file.upload = this._Upload.upload({
+            url: this._getBaseUrl() + '/restore',
+            data: {dump: file}
+        });
+
+        file.upload.then(onSuccess, onError);
     }
 
     _getBaseUrl(id) {

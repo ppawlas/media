@@ -41,8 +41,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['gas-readings' => 'gasReading']
         ]);
-        Route::post('water-readings/import', 'WaterReadingController@import');
-        Route::get('water-readings/export', 'WaterReadingController@export');
+        Route::post('water-readings/restore', 'WaterReadingController@restore');
+        Route::get('water-readings/dump', 'WaterReadingController@dump');
         Route::resource('water-readings', 'WaterReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['water-readings' => 'waterReading']

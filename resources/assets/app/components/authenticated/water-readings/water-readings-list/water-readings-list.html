@@ -2,9 +2,14 @@
 
     <div class="panel-heading">
         <strong>{{ 'WATER_READINGS' | translate }}</strong>&nbsp;
-        <button class="btn btn-xs btn-default pull-right " ui-sref="app.authenticated.water-readings.create">
-            <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
-        </button>
+        <div class="pull-right">
+            <button class="btn btn-xs btn-default" ng-click="$ctrl.dump()">
+                <i class="fa fa-cloud-download"></i> {{ 'EXPORT' | translate }}
+            </button>
+            <button class="btn btn-xs btn-default" ui-sref="app.authenticated.water-readings.create">
+                <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
+            </button>
+        </div>
     </div>
 
     <div class="table-responsive">
@@ -57,7 +62,7 @@
                     </button>
                 </td>
                 <td>
-                    <button class="btn btn-xs btn-danger " ng-click="$ctrl.delete(waterReading.id)"
+                    <button class="btn btn-xs btn-danger " ng-click="$ctrl.destroy(waterReading.id)"
                             confirm="{{ 'CONFIRM_READING_DELETE' | translate }}">
                         <i class="fa fa-trash"></i> {{ 'DELETE' | translate }}
                     </button>

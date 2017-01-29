@@ -14,7 +14,7 @@ class WaterReadingsListController {
         }
     }
 
-    delete(id) {
+    destroy(id) {
         this._WaterReadings.destroy(id).then(
             res => {
                 this._Messages.showMessage('READING_DELETED', 'success');
@@ -24,6 +24,17 @@ class WaterReadingsListController {
                 this._Messages.showMessage('READING_DELETE_ERROR', 'error');
             }
         );
+    }
+
+    dump() {
+        this._WaterReadings.dump().then(
+            res => {
+                this._Messages.showMessage('READING_EXPORTED', 'success');
+            },
+            err => {
+                this._Messages.showMessage('READING_EXPORT_ERROR', 'error');
+            }
+        )
     }
 }
 
