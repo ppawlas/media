@@ -7,6 +7,7 @@ import JWTService from "./jwt.service";
 import MessagesService from "./messages.service";
 import UniversalDatepicker from "./universal-datepicker/universal-datepicker";
 import Formatters from "./formatters/formatters";
+import Plotly from "./plotly/plotly";
 import FileSaver from "file-saver";
 
 let CommonModule = angular
@@ -15,7 +16,8 @@ let CommonModule = angular
         Footer,
         Confirm,
         UniversalDatepicker,
-        Formatters
+        Formatters,
+        Plotly
     ])
     .service('Auth', AuthService)
     .service('JWT', JWTService)

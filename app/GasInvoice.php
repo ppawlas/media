@@ -143,7 +143,7 @@ class GasInvoice extends Model
                    FROM gas_invoices
                    WHERE user_id = ?
                    GROUP BY extract(YEAR FROM date)
-                   ORDER BY extract(YEAR FROM date) DESC
+                   ORDER BY extract(YEAR FROM date) ASC
             ) AS aggregates
         ";
 
