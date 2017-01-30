@@ -151,4 +151,15 @@ class GasInvoiceController extends Controller
         // there was no exception so return the file from storage
         return response()->download($path, null, ['Content-Type' => 'text/csv']);
     }
+
+    /**
+     * Get the gas invoices aggregates.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function aggregates(User $user)
+    {
+        return response()->json(GasInvoice::getAggregates($user), 200);
+    }
 }

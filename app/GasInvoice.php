@@ -125,6 +125,32 @@ class GasInvoice extends Model
     }
 
     /**
+     * Get the gas invoices aggregates.
+     *
+     * @param User $user
+     * @return array
+     */
+    public static function getAggregates(User $user)
+    {
+        $query = "
+            SELECT
+              year, cost, usage, round(cost / usage, 2) AS avg_price
+            FROM (
+                   SELECT
+                     extract(YEAR FROM date) AS year,
+                     sum(charge) AS cost,
+                     sum(usage) AS usage
+                   FROM gas_invoices
+                   WHERE user_id = ?
+                   GROUP BY extract(YEAR FROM date)
+                   ORDER BY extract(YEAR FROM date) DESC
+            ) AS aggregates
+        ";
+
+        return DB::select($query, [$user->id]);
+    }
+
+    /**
      * Get the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -37,6 +37,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
         ]);
         Route::post('gas-invoices/restore', 'GasInvoiceController@restore');
         Route::get('gas-invoices/dump', 'GasInvoiceController@dump');
+        Route::get('gas-invoices/aggregates', 'GasInvoiceController@aggregates');
         Route::resource('gas-invoices', 'GasInvoiceController', [
             'except' => ['create', 'edit'],
             'parameters' => ['gas-invoices' => 'gasInvoice']

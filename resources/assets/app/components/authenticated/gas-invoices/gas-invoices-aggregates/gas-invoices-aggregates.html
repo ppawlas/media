@@ -1,0 +1,55 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'GAS_INVOICES_AGGREGATES' | translate }}</strong>&nbsp;
+    </div>
+
+    <div class="table-responsive">
+
+        <table st-table="$ctrl.table.aggregates" st-safe-src="$ctrl.aggregates"
+               class="table table-striped" ng-if="$ctrl.aggregates">
+            <thead>
+            <tr>
+                <th st-sort="year" st-sort-default="reverse" st-skip-natural="true">{{ 'YEAR' | translate }}</th>
+                <th st-sort="cost" st-skip-natural="true">{{ 'COST' | translate }}</th>
+                <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
+                <th st-sort="avg_price" st-skip-natural="true">{{ 'AVG_PRICE' | translate }}</th>
+            </tr>
+            <tr>
+                <th>
+                    <input st-search="year" placeholder="{{ 'YEAR' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="cost" placeholder="{{ 'COST' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="usage" placeholder="{{ 'USAGE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <input st-search="avg_price" placeholder="{{ 'AVG_PRICE' | translate }}"
+                           class="input-sm form-control" type="search"/>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr dir-paginate="aggregate in $ctrl.table.aggregates | itemsPerPage: 10">
+                <td>{{ aggregate.year }}</td>
+                <td>{{ aggregate.cost | currency }}</td>
+                <td>{{ aggregate.usage }}</td>
+                <td>{{ aggregate.avg_price | currency }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <div class="text-center">
+            <dir-pagination-controls></dir-pagination-controls>
+        </div>
+    </div>
+
+</div>
