@@ -2,7 +2,7 @@ import angular from "angular";
 import uiRouter from "angular-ui-router";
 import WaterReadingsList from "./water-readings-list/water-readings-list";
 import WaterReadingForm from "./water-reading-form/water-reading-form";
-import WaterReadingsRestoreComponent from "./water-readings-restore/water-readings-restore";
+import WaterReadingsRestore from "./water-readings-restore/water-readings-restore";
 import WaterReadingsService from "./water-readings.service";
 import WaterReadingsComponent from "./water-readings.component";
 
@@ -11,7 +11,7 @@ let WaterReadingsModule = angular
         uiRouter,
         WaterReadingsList,
         WaterReadingForm,
-        WaterReadingsRestoreComponent
+        WaterReadingsRestore
     ])
     .config(($stateProvider) => {
         'ngInject';

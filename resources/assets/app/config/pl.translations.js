@@ -83,7 +83,14 @@ const PLTranslations = {
     'GAS_INVOICES_AGGREGATES': 'Koszty ogrzewania',
     'YEAR': 'Rok',
     'COST': 'Koszt',
-    'AVG_PRICE': 'Średnia cena'
+    'AVG_PRICE': 'Średnia cena',
+    'AVERAGES': 'Średnie',
+    'PERIOD': 'Okres',
+    'GAS_DAILY': 'Gaz / Dzień',
+    'ELECTRICITY_DAILY': 'EE / Dzień',
+    'WATER_WEEKLY': 'Woda / Tydzień',
+    'STATISTICS': 'Statystyki',
+    'PLOT': 'Wykres'
 };
 
 export default PLTranslations;

@@ -1,6 +1,6 @@
 import angular from "angular";
 
-class GasInvoicesAggregatesController {
+class ReportPlotController {
     constructor($translate) {
         'ngInject';
 
@@ -12,18 +12,19 @@ class GasInvoicesAggregatesController {
             aggregates: angular.copy(this.aggregates)
         };
 
-        this._$translate(['COST', 'USAGE', 'GAS_INVOICES_AGGREGATES']).then(translations => {
+        this._$translate(['GAS_DAILY', 'ELECTRICITY_DAILY', 'WATER_WEEKLY', 'USAGE']).then(translations => {
             let data = [
-                this._getTrace('cost', translations.COST),
-                this._getTrace('usage', translations.USAGE),
+                this._getTrace('gas', translations.GAS_DAILY),
+                this._getTrace('electricity', translations.ELECTRICITY_DAILY),
+                this._getTrace('water', translations.WATER_WEEKLY),
             ];
 
             this.plot = {
                 data: data,
                 layout: {
-                    title: translations.GAS_INVOICES_AGGREGATES,
+                    title: translations.USAGE,
                     xaxis: {
-                        fixedrange: true
+                        rangeslider: {}
                     },
                     yaxis: {
                         fixedrange: true
@@ -35,12 +36,12 @@ class GasInvoicesAggregatesController {
 
     _getTrace(field, label) {
         return {
-            x: this.aggregates.map(aggregate => aggregate.year),
+            x: this.aggregates.map(aggregate => aggregate.period),
             y: this.aggregates.map(aggregate => aggregate[field]),
-            type: 'bar',
+            type: 'scatter',
             name: label
         }
     }
 }
 
-export default GasInvoicesAggregatesController;
+export default ReportPlotController;

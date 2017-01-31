@@ -3,7 +3,7 @@ import uiRouter from "angular-ui-router";
 import GasInvoicesList from "./gas-invoices-list/gas-invoices-list";
 import GasInvoicesAggregates from "./gas-invoices-aggregates/gas-invoices-aggregates";
 import GasInvoiceForm from "./gas-invoice-form/gas-invoice-form";
-import GasInvoicesRestoreComponent from "./gas-invoices-restore/gas-invoices-restore";
+import GasInvoicesRestore from "./gas-invoices-restore/gas-invoices-restore";
 import GasInvoicesService from "./gas-invoices.service";
 import GasInvoicesComponent from "./gas-invoices.component";
 
@@ -13,7 +13,7 @@ let GasInvoicesModule = angular
         GasInvoicesList,
         GasInvoicesAggregates,
         GasInvoiceForm,
-        GasInvoicesRestoreComponent
+        GasInvoicesRestore
     ])
     .config(($stateProvider) => {
         'ngInject';

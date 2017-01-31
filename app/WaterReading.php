@@ -5,6 +5,7 @@ namespace App;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Log;
 use Storage;
 
@@ -121,6 +122,24 @@ class WaterReading extends Model
     public static function getDumpPath(User $user)
     {
         return 'water-readings/' . $user->id . '.csv';
+    }
+
+    /**
+     * Get average weekly water usage for each month.
+     *
+     * @param User $user
+     * @return Collection
+     */
+    public static function getAggregates(User $user)
+    {
+        $readings = static::whereUserId($user->id)->orderBy('date')->get();
+
+        return $readings->each(function ($reading) {
+            $reading->key = substr($reading->date, 0, 7);
+        })->groupBy('key')->map(function ($group) {
+            /** @var Collection $group */
+            return round($group->avg('daily') * 7, 2);
+        });
     }
 
     /**

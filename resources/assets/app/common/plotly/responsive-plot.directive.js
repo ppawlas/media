@@ -6,17 +6,19 @@ const ResponsivePlotDirective = (Plotly, $window) => {
     return {
         restrict: 'A',
         scope: {
-            data: '<'
+            data: '<',
+            layout: '<?'
         },
         link: (scope, element) => {
             let plotContainer = element[0];
 
-            let dataWatcher = scope.$watch('data', () => {
+            let scopeWatcher = scope.$watchGroup(['data', 'layout'], () => {
                 plotContainer.data = scope.data;
+                plotContainer.layout = scope.layout;
                 Plotly.redraw(plotContainer);
             });
 
-            Plotly.newPlot(plotContainer, scope.data);
+            Plotly.newPlot(plotContainer, scope.data, scope.layout);
 
             function onResize() {
                 Plotly.Plots.resize(plotContainer);
@@ -25,7 +27,7 @@ const ResponsivePlotDirective = (Plotly, $window) => {
             angular.element($window).on('resize', onResize);
 
             scope.$on('$destroy', () => {
-                dataWatcher();
+                scopeWatcher();
                 angular.element($window).off('resize', onResize);
             });
         }

@@ -54,5 +54,6 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['water-readings' => 'waterReading']
         ]);
+        Route::get('reports/aggregates', 'ReportController@aggregates');
     });
 });

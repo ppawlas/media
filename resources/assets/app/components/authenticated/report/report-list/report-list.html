@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
 
     <div class="panel-heading">
-        <strong>{{ 'GAS_INVOICES_AGGREGATES' | translate }}</strong>&nbsp;
+        <strong>{{ 'AVERAGES' | translate }}</strong>&nbsp;
     </div>
 
     <div class="table-responsive">
@@ -10,43 +10,41 @@
                class="table table-striped" ng-if="$ctrl.aggregates">
             <thead>
             <tr>
-                <th st-sort="year" st-sort-default="reverse" st-skip-natural="true">{{ 'YEAR' | translate }}</th>
-                <th st-sort="cost" st-skip-natural="true">{{ 'COST' | translate }}</th>
-                <th st-sort="usage" st-skip-natural="true">{{ 'USAGE' | translate }}</th>
-                <th st-sort="avg_price" st-skip-natural="true">{{ 'AVG_PRICE' | translate }}</th>
+                <th st-sort="period" st-sort-default="reverse" st-skip-natural="true">{{ 'PERIOD' | translate }}</th>
+                <th st-sort="gas" st-skip-natural="true">{{ 'GAS_DAILY' | translate }}</th>
+                <th st-sort="electricity" st-skip-natural="true">{{ 'ELECTRICITY_DAILY' | translate }}</th>
+                <th st-sort="water" st-skip-natural="true">{{ 'WATER_WEEKLY' | translate }}</th>
             </tr>
             <tr>
                 <th>
-                    <input st-search="year" placeholder="{{ 'YEAR' | translate }}"
+                    <input st-search="period" placeholder="{{ 'PERIOD' | translate }}"
                            class="input-sm form-control" type="search"/>
                 </th>
                 <th>
-                    <input st-search="cost" placeholder="{{ 'COST' | translate }}"
+                    <input st-search="gas" placeholder="{{ 'GAS_DAILY' | translate }}"
                            class="input-sm form-control" type="search"/>
                 </th>
                 <th>
-                    <input st-search="usage" placeholder="{{ 'USAGE' | translate }}"
+                    <input st-search="electricity" placeholder="{{ 'ELECTRICITY_DAILY' | translate }}"
                            class="input-sm form-control" type="search"/>
                 </th>
                 <th>
-                    <input st-search="avg_price" placeholder="{{ 'AVG_PRICE' | translate }}"
+                    <input st-search="water" placeholder="{{ 'WATER_WEEKLY' | translate }}"
                            class="input-sm form-control" type="search"/>
                 </th>
             </tr>
             </thead>
             <tbody>
             <tr dir-paginate="aggregate in $ctrl.table.aggregates | itemsPerPage: 10">
-                <td>{{ aggregate.year }}</td>
-                <td>{{ aggregate.cost | currency }}</td>
-                <td>{{ aggregate.usage }}</td>
-                <td>{{ aggregate.avg_price | currency }}</td>
+                <td>{{ aggregate.period }}</td>
+                <td>{{ aggregate.gas | number : 2 }}</td>
+                <td>{{ aggregate.electricity | number : 2 }}</td>
+                <td>{{ aggregate.water | number : 2 }}</td>
             </tr>
             </tbody>
         </table>
 
     </div>
-
-    <div responsive-plot data="$ctrl.plot.data" layout="$ctrl.plot.layout"></div>
 
     <div class="panel-footer">
         <div class="text-center">

@@ -137,6 +137,28 @@
 
                 </li>
 
+                <!--report-->
+                <li class="dropdown" uib-dropdown is-open="$ctrl.reportsNav.isopen">
+
+                    <a role="button" class="dropdown-toggle" role="button" uib-dropdown-toggle>
+                        <i class="fa fa-database"></i> {{ 'STATISTICS' | translate }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu">
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.report.list">
+                                <i class="fa fa-th-list"></i> {{ 'AVERAGES' | translate }}
+                            </a>
+                        </li>
+                        <li>
+                            <a role="button" ui-sref="app.authenticated.report.plot">
+                                <i class="fa fa-area-chart"></i> {{ 'PLOT' | translate }}
+                            </a>
+                        </li>
+                    </ul>
+
+                </li>
+
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
