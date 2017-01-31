@@ -1,10 +1,9 @@
 import angular from "angular";
 
 class GasInvoicesAggregatesController {
-    constructor($translate, Plotly) {
+    constructor($translate) {
         'ngInject';
 
-        this._Plotly = Plotly;
         this._$translate = $translate;
     }
 
@@ -19,7 +18,7 @@ class GasInvoicesAggregatesController {
                 this._getTrace('usage', translations.USAGE),
             ];
 
-            this._Plotly.newPlot('aggregatesPlot', data);
+            this.plot = {data: data};
         });
     }
 
