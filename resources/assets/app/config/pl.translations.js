@@ -26,6 +26,7 @@ const PLTranslations = {
     'REQUIRED_FIELD': 'To pole jest wymagane.',
     'NUMERIC_PATTERN': 'W polu można wprowadzić maksymalnie 9 cyfr, w tym 2 znaki po przecinku.',
     'NOT_A_NUMBER': 'W polu należy wprowadzić liczbę.',
+    'NOT_AN_EMAIL': 'W polu należy wprowadzić poprawny adres email',
     'MAX_LENGTH': 'Przekroczono maksymalną dopuszczalną długość.',
     'INVALID_DATE': 'Podana data jest niepoprawna.',
     'DATE_GREATER_THEN': 'jest większa niż',

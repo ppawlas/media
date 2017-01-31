@@ -2,35 +2,48 @@
     <div class="well">
         <h3 class="text-center"><strong>{{ 'APP_NAME' | translate }}</strong></h3>
 
-        <form>
+        <form name="authenticateForm" novalidate>
 
-            <fieldset>
+            <div>
 
-                <fieldset class="form-group">
+                <div class="form-group"
+                     ng-class="{ 'has-error': authenticateForm.email.$touched && authenticateForm.email.$invalid }">
 
                     <input class="form-control"
-                           type="email" name="email"
+                           type="email" name="email" required
                            placeholder="{{ 'EMAIL' | translate }}"
                            ng-model="$ctrl.formData.email">
+                    <div class="help-block"
+                         ng-messages="authenticateForm.email.$touched && authenticateForm.email.$error">
+                        <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
+                        <p ng-message="email">{{ 'NOT_AN_EMAIL' | translate}}</p>
+                    </div>
 
-                </fieldset>
+                </div>
 
-                <fieldset class="form-group">
+                <div class="form-group"
+                     ng-class="{ 'has-error': authenticateForm.password.$touched && authenticateForm.password.$invalid }">
 
                     <input class="form-control"
-                           type="password" name="password"
+                           type="password" name="password" required
                            placeholder="{{ 'PASSWORD' | translate }}"
                            ng-model="$ctrl.formData.password">
+                    <div class="help-block"
+                         ng-messages="authenticateForm.password.$touched && authenticateForm.password.$error">
+                        <p ng-message="required">{{ 'REQUIRED_FIELD' | translate}}</p>
+                    </div>
 
-                </fieldset>
+                </div>
 
                 <div class="text-center">
-                    <button class="btn btn-lg btn-primary" type="submit" ng-click="$ctrl.submitForm()">
+                    <button class="btn btn-lg btn-primary" type="submit"
+                            ng-disabled="authenticateForm.$invalid"
+                            ng-click="$ctrl.submitForm()">
                         {{ 'SIGN' | translate }}
                     </button>
                 </div>
 
-            </fieldset>
+            </div>
         </form>
     </div>
 </div>
