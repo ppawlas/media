@@ -93,6 +93,8 @@ return [
     |
     */
 
+    'date_range_available' => 'The dates must not overlap any existing period.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
