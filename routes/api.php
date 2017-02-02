@@ -25,16 +25,16 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
         'prefix' => 'users/{user}',
         'middleware' => 'can:access,user'
     ], function () {
-        Route::resource('electricity-charges', 'ElectricityChargeController', [
-            'except' => ['create', 'edit'],
-            'parameters' => ['electricity-charges' => 'electricityCharge']
-        ]);
+        // electricity readings
         Route::post('electricity-readings/restore', 'ElectricityReadingController@restore');
         Route::get('electricity-readings/dump', 'ElectricityReadingController@dump');
+        Route::get('electricity-readings/charge', 'ElectricityReadingController@getCharge');
+        Route::put('electricity-readings/charge', 'ElectricityReadingController@setCharge');
         Route::resource('electricity-readings', 'ElectricityReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['electricity-readings' => 'electricityReading']
         ]);
+        // gas invoices
         Route::post('gas-invoices/restore', 'GasInvoiceController@restore');
         Route::get('gas-invoices/dump', 'GasInvoiceController@dump');
         Route::get('gas-invoices/aggregates', 'GasInvoiceController@aggregates');
@@ -42,18 +42,21 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
             'except' => ['create', 'edit'],
             'parameters' => ['gas-invoices' => 'gasInvoice']
         ]);
+        // gas readings
         Route::post('gas-readings/restore', 'GasReadingController@restore');
         Route::get('gas-readings/dump', 'GasReadingController@dump');
         Route::resource('gas-readings', 'GasReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['gas-readings' => 'gasReading']
         ]);
+        // water readings
         Route::post('water-readings/restore', 'WaterReadingController@restore');
         Route::get('water-readings/dump', 'WaterReadingController@dump');
         Route::resource('water-readings', 'WaterReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['water-readings' => 'waterReading']
         ]);
+        // reports
         Route::get('reports/aggregates', 'ReportController@aggregates');
     });
 });

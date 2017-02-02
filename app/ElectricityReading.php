@@ -21,6 +21,12 @@ use Storage;
  * @property float $usage
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $daily
+ * @property-read mixed $monthly_prediction
+ * @property-read mixed $yearly_prediction
+ * @property-read \App\ElectricityReading $next
+ * @property-read \App\ElectricityReading $previous
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityReading whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityReading whereDate($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityReading whereFixedUsage($value)
@@ -31,9 +37,6 @@ use Storage;
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityReading whereUsage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityReading whereUserId($value)
  * @mixin \Eloquent
- * @property-read \App\ElectricityReading $next
- * @property-read \App\ElectricityReading $previous
- * @property-read \App\User $user
  */
 class ElectricityReading extends Model
 {

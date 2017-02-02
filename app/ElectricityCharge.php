@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @property int $id
  * @property int $user_id
- * @property string $applies_from
- * @property string $applies_to
  * @property float $component_c
  * @property float $component_ssvn
  * @property float $component_szvnk
@@ -19,8 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $component_os
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereAppliesFrom($value)
- * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereAppliesTo($value)
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereComponentC($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereComponentOs($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereComponentSop($value)
@@ -32,7 +29,6 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\ElectricityCharge whereUserId($value)
  * @mixin \Eloquent
- * @property-read \App\User $user
  */
 class ElectricityCharge extends Model
 {
@@ -42,8 +38,7 @@ class ElectricityCharge extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'applies_from', 'applies_to', 'component_c', 'component_ssvn',
-        'component_szvnk', 'component_sop', 'component_sosj', 'component_os'
+        'user_id', 'component_c', 'component_ssvn', 'component_szvnk', 'component_sop', 'component_sosj', 'component_os'
     ];
 
     /**

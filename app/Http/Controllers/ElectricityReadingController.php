@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ElectricityCharge;
 use App\ElectricityReading;
+use App\Http\Requests\ElectricityChargeRequest;
 use App\Http\Requests\ElectricityReadingRequest;
 use App\Http\Requests\ImportRequest;
 use App\User;
@@ -150,5 +152,57 @@ class ElectricityReadingController extends Controller
         $path = Storage::disk('dump')->getDriver()->getAdapter()->applyPathPrefix(ElectricityReading::getDumpPath($user));
         // there was no exception so return the file from storage
         return response()->download($path, null, ['Content-Type' => 'text/csv']);
+    }
+
+    /**
+     * Get the charge.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function getCharge(User $user)
+    {
+        // attempt to get the user's electricity charge
+        $electricityCharge = $user->electricityCharge;
+
+        // if there is no electricity charge yet, create it with default parameters
+        if ($electricityCharge === null) {
+            $electricityCharge = ElectricityCharge::create(['user_id' => $user->id]);
+        }
+
+        return response()->json($electricityCharge, 200);
+    }
+
+    /**
+     * Set the charge.
+     *
+     * @param ElectricityChargeRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function setCharge(ElectricityChargeRequest $request, User $user)
+    {
+        // grab attributes from the request
+        $attributes = $request->all();
+        // pass the id of the authenticated user
+        $attributes['user_id'] = $user->id;
+
+        // try to get user's electricity charge
+        $electricityCharge = $user->electricityCharge;
+
+        try {
+            // if user has electricity charge defined, attempt to update it with provided attributes, otherwise create
+            if ($electricityCharge === null) {
+                $electricityCharge = ElectricityCharge::create($attributes);
+            } else {
+                $electricityCharge->update($attributes);
+            }
+        } catch (Exception $e) {
+            // something went wrong whilst attempting to set electricity charge
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+
+        // all good so return the set electricity charge
+        return response()->json($electricityCharge, 200);
     }
 }

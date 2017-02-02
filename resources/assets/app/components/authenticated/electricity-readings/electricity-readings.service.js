@@ -65,6 +65,21 @@ class ElectricityReadingsService {
         file.upload.then(onSuccess, onError);
     }
 
+    getCharge() {
+        return this._$http({
+            url: this._getBaseUrl() + '/charge',
+            method: 'GET'
+        }).then(res => res.data);
+    }
+
+    setCharge(data) {
+        return this._$http({
+            url: this._getBaseUrl() + '/charge',
+            method: 'PUT',
+            data: data
+        }).then(res => res.data);
+    }
+
     _getBaseUrl(id) {
         return this._AppConstants.api + '/users/' + this._Auth.current.id + '/electricity-readings' + (id ? '/' + id : '')
     }

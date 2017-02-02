@@ -3,6 +3,7 @@ import uiRouter from "angular-ui-router";
 import ElectricityReadingsList from "./electricity-readings-list/electricity-readings-list";
 import ElectricityReadingForm from "./electricity-reading-form/electricity-reading-form";
 import ElectricityReadingsRestore from "./electricity-readings-restore/electricity-readings-restore";
+import ElectricityReadingsCharge from "./electricity-readings-charge/electricity-readings-charge";
 import ElectricityReadingsService from "./electricity-readings.service";
 import ElectricityReadingsComponent from "./electricity-readings.component";
 
@@ -11,7 +12,8 @@ let ElectricityReadingsModule = angular
         uiRouter,
         ElectricityReadingsList,
         ElectricityReadingForm,
-        ElectricityReadingsRestore
+        ElectricityReadingsRestore,
+        ElectricityReadingsCharge
     ])
     .config(($stateProvider) => {
         'ngInject';

@@ -9,20 +9,22 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  *
  * @property int $id
  * @property string $email
+ * @property string $name
  * @property string $password
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
- * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
- * @mixin \Eloquent
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\ElectricityCharge[] $electricityCharges
+ * @property-read \App\ElectricityCharge $electricityCharge
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\ElectricityReading[] $electricityReadings
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasInvoice[] $gasInvoices
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $gasReadings
- * @property-read \Illuminate\Database\Eloquent\Collection|\App\GasReading[] $waterReadings
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\WaterReading[] $waterReadings
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\User whereUpdatedAt($value)
+ * @mixin \Eloquent
  */
 class User extends Authenticatable
 {
@@ -75,13 +77,13 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the user's electricity charges.
+     * Get the user's electricity charge.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function electricityCharges()
+    public function electricityCharge()
     {
-        return $this->hasMany('App\ElectricityCharge');
+        return $this->hasOne('App\ElectricityCharge');
     }
 
     /**

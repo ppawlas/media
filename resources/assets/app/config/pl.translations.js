@@ -91,7 +91,17 @@ const PLTranslations = {
     'ELECTRICITY_DAILY': 'EE / Dzień',
     'WATER_WEEKLY': 'Woda / Tydzień',
     'STATISTICS': 'Statystyki',
-    'PLOT': 'Wykres'
+    'PLOT': 'Wykres',
+    'ELECTRICITY_CHARGE': 'Stawka energii elektrycznej',
+    'COMPONENT_C': 'C',
+    'COMPONENT_SSVN': 'SSvn',
+    'COMPONENT_SZVNK': 'SZVnk',
+    'COMPONENT_SOP': 'Sop',
+    'COMPONENT_SOSJ': 'SoSJ',
+    'COMPONENT_OS': 'Os',
+    'NUMERIC_PATTERN_CHARGE': 'W polu można wprowadzić maksymalnie 9 cyfr, w tym 6 znaków po przecinku.',
+    'CHARGE_UPDATED': 'Poprawnie zaktualizowano stawkę energii elektrycznej',
+    'CHARGE_UPDATE_ERROR': 'Podczas aktualizacji stawki energii elektrycznej wystąpił błąd',
 };
 
 export default PLTranslations;

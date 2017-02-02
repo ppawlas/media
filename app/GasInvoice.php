@@ -21,6 +21,10 @@ use Storage;
  * @property float $charge
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read float $price
+ * @property-read \App\GasInvoice $next
+ * @property-read \App\GasInvoice $previous
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Query\Builder|\App\GasInvoice whereCharge($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GasInvoice whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GasInvoice whereDate($value)
@@ -32,9 +36,6 @@ use Storage;
  * @method static \Illuminate\Database\Query\Builder|\App\GasInvoice whereUsage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\GasInvoice whereUserId($value)
  * @mixin \Eloquent
- * @property-read \App\GasInvoice $next
- * @property-read \App\GasInvoice $previous
- * @property-read \App\User $user
  */
 class GasInvoice extends Model
 {

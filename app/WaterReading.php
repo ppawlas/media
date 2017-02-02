@@ -21,6 +21,12 @@ use Storage;
  * @property float $usage
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $daily
+ * @property-read mixed $monthly_prediction
+ * @property-read mixed $yearly_prediction
+ * @property-read \App\WaterReading $next
+ * @property-read \App\WaterReading $previous
+ * @property-read \App\User $user
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereDate($value)
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereFixedUsage($value)
@@ -31,9 +37,6 @@ use Storage;
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereUsage($value)
  * @method static \Illuminate\Database\Query\Builder|\App\WaterReading whereUserId($value)
  * @mixin \Eloquent
- * @property-read \App\WaterReading $next
- * @property-read \App\WaterReading $previous
- * @property-read \App\User $user
  */
 class WaterReading extends Model
 {
