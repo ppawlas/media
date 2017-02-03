@@ -146,6 +146,42 @@ class ElectricityReading extends Model
     }
 
     /**
+     * Get the yearly usage and cost and two months cost prediction.
+     *
+     * @param User $user
+     * @param $initialDate
+     * @return Collection
+     */
+    public static function getPrediction(User $user, $initialDate)
+    {
+        // get the user's electricity charge
+        $electricityCharge = ElectricityCharge::get($user);
+
+        // calculate the daily average usage from the initial date
+        $dailyAverageUsage = static::whereUserId($user->id)->where('date', '>=', $initialDate)->get()->avg('daily');
+
+        // get the yearly usage and cost predictions
+        $yearlyUsagePrediction = $dailyAverageUsage * ((new Carbon())->lastOfYear()->dayOfYear + 1);
+        $yearlyCostPrediction = (
+            $yearlyUsagePrediction * (
+                $electricityCharge->component_c +
+                $electricityCharge->component_sosj +
+                $electricityCharge->component_szvnk
+            ) + 12 * ($electricityCharge->component_ssvn + $electricityCharge->component_sop)
+        );
+        // get the two months cost prediction
+        $twoMonthsCostPrediction = $yearlyCostPrediction / 6 + $electricityCharge->component_os;
+
+        return collect(compact(
+            'yearlyUsagePrediction',
+            'yearlyCostPrediction',
+            'twoMonthsCostPrediction'
+        ))->map(function ($prediction) {
+            return round($prediction, 2);
+        });
+    }
+
+    /**
      * Get the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

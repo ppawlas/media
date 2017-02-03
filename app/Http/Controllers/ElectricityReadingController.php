@@ -6,6 +6,7 @@ use App\ElectricityCharge;
 use App\ElectricityReading;
 use App\Http\Requests\ElectricityChargeRequest;
 use App\Http\Requests\ElectricityReadingRequest;
+use App\Http\Requests\ElectricityUsagePredictionRequest;
 use App\Http\Requests\ImportRequest;
 use App\User;
 use Exception;
@@ -162,15 +163,7 @@ class ElectricityReadingController extends Controller
      */
     public function getCharge(User $user)
     {
-        // attempt to get the user's electricity charge
-        $electricityCharge = $user->electricityCharge;
-
-        // if there is no electricity charge yet, create it with default parameters
-        if ($electricityCharge === null) {
-            $electricityCharge = ElectricityCharge::create(['user_id' => $user->id]);
-        }
-
-        return response()->json($electricityCharge, 200);
+        return response()->json(ElectricityCharge::get($user), 200);
     }
 
     /**
@@ -204,5 +197,17 @@ class ElectricityReadingController extends Controller
 
         // all good so return the set electricity charge
         return response()->json($electricityCharge, 200);
+    }
+
+    /**
+     * Get the yearly usage and cost and two months cost prediction.
+     *
+     * @param ElectricityUsagePredictionRequest $request
+     * @param User $user
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPrediction(ElectricityUsagePredictionRequest $request, User $user)
+    {
+        return response()->json(ElectricityReading::getPrediction($user, $request->get('initial_date')), 200);
     }
 }

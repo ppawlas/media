@@ -30,6 +30,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
         Route::get('electricity-readings/dump', 'ElectricityReadingController@dump');
         Route::get('electricity-readings/charge', 'ElectricityReadingController@getCharge');
         Route::put('electricity-readings/charge', 'ElectricityReadingController@setCharge');
+        Route::post('electricity-readings/prediction', 'ElectricityReadingController@getPrediction');
         Route::resource('electricity-readings', 'ElectricityReadingController', [
             'except' => ['create', 'edit'],
             'parameters' => ['electricity-readings' => 'electricityReading']

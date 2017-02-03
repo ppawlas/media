@@ -51,6 +51,26 @@ class ElectricityCharge extends Model
     ];
 
     /**
+     * Get the user's electricity charge.
+     * If there is none, create it.
+     *
+     * @param User $user
+     * @return ElectricityCharge|static
+     */
+    public static function get(User $user)
+    {
+        // attempt to get the user's electricity charge
+        $electricityCharge = $user->electricityCharge;
+
+        // if there is no electricity charge yet, create it with default parameters
+        if ($electricityCharge === null) {
+            $electricityCharge = ElectricityCharge::create(['user_id' => $user->id]);
+        }
+
+        return $electricityCharge;
+    }
+
+    /**
      * Get the user.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
