@@ -15,6 +15,7 @@ const PLTranslations = {
     'SIGN_OUT': 'Wyloguj',
     'LOADING': 'Trwa ładowanie',
     'HELLO': 'Witaj',
+    'WHAT_TO_DO': 'Co chcesz dzisiaj zrobić?',
     'USER_LOGGED_OUT': 'Nastąpiło wylogowanie',
     'CONFIRM_LOGOUT': 'Czy na pewno chcesz się wylogować?',
     'DASHBOARD': 'Pulpit',
@@ -22,7 +23,6 @@ const PLTranslations = {
     'DELETE': 'Usuń',
     'EDIT': 'Edytuj',
     'SAVE': 'Zapisz',
-    'BACK': 'Wstecz',
     'REQUIRED_FIELD': 'To pole jest wymagane.',
     'NUMERIC_PATTERN': 'W polu można wprowadzić maksymalnie 9 cyfr, w tym 2 znaki po przecinku.',
     'NOT_A_NUMBER': 'W polu należy wprowadzić liczbę.',
@@ -102,6 +102,15 @@ const PLTranslations = {
     'NUMERIC_PATTERN_CHARGE': 'W polu można wprowadzić maksymalnie 9 cyfr, w tym 6 znaków po przecinku.',
     'CHARGE_UPDATED': 'Poprawnie zaktualizowano stawkę energii elektrycznej',
     'CHARGE_UPDATE_ERROR': 'Podczas aktualizacji stawki energii elektrycznej wystąpił błąd',
+    'ELECTRICITY_USAGE_PREDICTION': 'Prognoza rocznego zużycia energii elektrycznej',
+    'PREDICTION_CALCULATED': 'Ustalono nową prognozę rocznego zużycia energii elektrycznej',
+    'PREDICTION_CALCULATE_ERROR': 'Podczas ustalania nowej prognozy rocznego zużycia energii elektrycznej wystąpił błąd',
+    'INITIAL_DATE': 'Początek okresu do statystyk',
+    'PREDICTION_YEARLY_USAGE': 'Zużycie roczne - symulacja',
+    'PREDICTION_YEARLY_COST': 'Opłata roczna - symulacja',
+    'PREDICTION_TWO_MONTHS_COST': 'Opłata za 2 miesiące - symulacja',
+    'CALCULATE': 'Przelicz',
+    'ENTER_DATA': 'Wprowadź dane'
 };
 
 export default PLTranslations;

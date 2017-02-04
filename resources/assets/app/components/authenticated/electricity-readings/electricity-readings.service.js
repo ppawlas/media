@@ -80,6 +80,14 @@ class ElectricityReadingsService {
         }).then(res => res.data);
     }
 
+    getPrediction(data) {
+        return this._$http({
+            url: this._getBaseUrl() + '/prediction',
+            method: 'POST',
+            data: data
+        }).then(res => res.data);
+    }
+
     _getBaseUrl(id) {
         return this._AppConstants.api + '/users/' + this._Auth.current.id + '/electricity-readings' + (id ? '/' + id : '')
     }

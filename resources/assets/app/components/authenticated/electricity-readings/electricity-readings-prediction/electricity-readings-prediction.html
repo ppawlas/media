@@ -1,0 +1,59 @@
+<div class="panel panel-primary">
+
+    <div class="panel-heading">
+        <strong>{{ 'ELECTRICITY_USAGE_PREDICTION' | translate }}</strong>
+    </div>
+
+    <div class="electricity-usage-prediction-form">
+
+        <div ng-form="electricityUsagePredictionForm" class="form">
+
+            <universal-datepicker dt="$ctrl.initialDate"
+                                  form-name="electricityUsagePredictionForm" field-name="initialDate"
+                                  field-label="INITIAL_DATE"
+                                  on-dt-change="$ctrl.setInitialDate($event)"
+                                  required="true">
+            </universal-datepicker>
+
+        </div>
+
+        <button class="btn btn-primary" ng-click="$ctrl.getPrediction()"
+                ng-disabled="electricityUsagePredictionForm.$invalid">
+            {{ 'CALCULATE' | translate }}
+        </button>
+
+    </div>
+
+    <div class="table-responsive">
+
+        <table class="table" ng-if="$ctrl.prediction">
+            <thead>
+            <tr>
+                <th>{{ 'INITIAL_DATE' | translate }}</th>
+                <th>{{ 'PREDICTION_YEARLY_USAGE' | translate }}</th>
+                <th>{{ 'PREDICTION_YEARLY_COST' | translate }}</th>
+                <th>{{ 'PREDICTION_TWO_MONTHS_COST' | translate }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{ $ctrl.prediction.initialDate | date : 'yyyy-MM-dd' }}</td>
+                <td>{{ $ctrl.prediction.yearlyUsagePrediction | number : 2 }}</td>
+                <td>{{ $ctrl.prediction.yearlyCostPrediction | number : 2 }}</td>
+                <td>{{ $ctrl.prediction.twoMonthsCostPrediction | number : 2 }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div class="panel-footer">
+        <a role="button" ui-sref="app.authenticated.electricity-readings.list" class="footer-menu-item">
+            <i class="fa fa-list"></i> {{ 'LIST' | translate }}
+        </a>
+        <a role="button" ui-sref="app.authenticated.dashboard" class="footer-menu-item">
+            <i class="fa fa-home"></i> {{ 'DASHBOARD' | translate }}
+        </a>
+    </div>
+
+</div>

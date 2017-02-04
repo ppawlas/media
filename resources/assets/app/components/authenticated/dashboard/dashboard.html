@@ -1,1 +1,18 @@
-<h1>{{ 'HELLO' | translate }}, {{ $ctrl._Auth.current.name }}</h1>
+<h1>{{ 'HELLO' | translate }}, {{ $ctrl._Auth.current.name }}.</h1>
+<h2>{{ 'WHAT_TO_DO' | translate }}</h2>
+
+<div class="list-group">
+
+    <a ui-sref="app.authenticated.gas-readings.create" class="list-group-item">
+        <i class="fa fa-fire"></i> {{ 'GAS_READINGS' | translate }} - {{ 'ENTER_DATA' | translate }}
+    </a>
+    <a ui-sref="app.authenticated.gas-invoices.create" class="list-group-item">
+        <i class="fa fa-file"></i> {{ 'GAS_INVOICES' | translate }} - {{ 'ENTER_DATA' | translate }}
+    </a>
+    <a ui-sref="app.authenticated.electricity-readings.create" class="list-group-item">
+        <i class="fa fa-lightbulb-o"></i> {{ 'ELECTRICITY' | translate }} - {{ 'ENTER_DATA' | translate }}
+    </a>
+    <a ui-sref="app.authenticated.water-readings.create" class="list-group-item">
+        <i class="fa fa-tint"></i> {{ 'WATER' | translate }} - {{ 'ENTER_DATA' | translate }}
+    </a>
+</div>
