@@ -1,7 +1,7 @@
 const MinDateDirective = () => {
     return {
         require: 'ngModel',
-        link(scope, elm, attrs, ctrl) {
+        link(scope, element, attrs, ctrl) {
             ctrl.$validators.minDate = (modelValue, viewValue) => {
                 let minDate = new Date(attrs.minDate.replace(/"/g, ''));
 

@@ -7,6 +7,10 @@ class GasReadingsRestoreController {
         this._Messages = Messages;
     }
 
+    setFile($event) {
+        this.dumpFile = $event.file;
+    }
+
     restore(file) {
         this._GasReadings.restore(
             file,

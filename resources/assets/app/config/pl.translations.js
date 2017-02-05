@@ -113,7 +113,9 @@ const PLTranslations = {
     'PREDICTION_TWO_MONTHS_COST': 'Opłata za 2 miesiące - symulacja',
     'CALCULATE': 'Przelicz',
     'ENTER_DATA': 'Wprowadź dane',
-    'BACKUP': 'Kopie danych'
+    'BACKUP': 'Kopie danych',
+    'MAKE_BACKUP': 'Wykonaj kopię danych',
+    'CHOOSE_FILE': 'Wybierz plik'
 };
 
 export default PLTranslations;

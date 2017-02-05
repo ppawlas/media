@@ -1,4 +1,4 @@
-<div class="panel panel-warning">
+<div class="panel panel-primary">
 
     <div class="panel-heading">
         <strong>{{ 'BACKUP' | translate }}</strong>&nbsp;
@@ -6,7 +6,7 @@
 
     <div class="backup-form">
 
-        <div ng-form="backupCreateForm" class="form">
+        <div ng-form="backupCreateForm" class="form-inline">
 
             <button class="btn btn-success" ng-click="$ctrl.create()">
                 <i class="fa fa-cloud-download"></i> {{ 'EXPORT_ALL' | translate }}
@@ -20,15 +20,12 @@
 
     <div class="backup-form">
 
-        <div ng-form="backupRestoreForm" class="form">
+        <div ng-form="backupRestoreForm" class="form-inline">
 
-            <div class="form-group" ng-class="{ 'has-error': backupRestoreForm.file.$invalid }">
-
-                <input type="file" ngf-select ng-model="$ctrl.dumpFile" name="file"
-                       accept=".zip" ngf-max-size="2MB" required
-                       ngf-model-invalid="errorFile">
-
-            </div>
+            <file-input-wrapper form-name="backupRestoreForm" field-name="file"
+                                accept=".zip" input-id="backup-file-input"
+                                on-file-change="$ctrl.setFile($event)">
+            </file-input-wrapper>
 
             <button class="btn btn-danger" ng-click="$ctrl.restore($ctrl.dumpFile)"
                     ng-disabled="backupRestoreForm.$invalid"

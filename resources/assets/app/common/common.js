@@ -8,6 +8,7 @@ import MessagesService from "./messages.service";
 import UniversalDatepicker from "./universal-datepicker/universal-datepicker";
 import Formatters from "./formatters/formatters";
 import Plotly from "./plotly/plotly";
+import FileInputWrapper from "./file-input-wrapper/file-input-wrapper";
 import FileSaver from "file-saver";
 
 let CommonModule = angular
@@ -17,7 +18,8 @@ let CommonModule = angular
         Confirm,
         UniversalDatepicker,
         Formatters,
-        Plotly
+        Plotly,
+        FileInputWrapper
     ])
     .service('Auth', AuthService)
     .service('JWT', JWTService)

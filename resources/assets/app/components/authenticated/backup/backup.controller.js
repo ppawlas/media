@@ -7,6 +7,10 @@ class BackupController {
         this._Messages = Messages;
     }
 
+    setFile($event) {
+        this.dumpFile = $event.file;
+    }
+
     create() {
         this._Backup.create().then(
             res => {

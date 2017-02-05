@@ -7,6 +7,10 @@ class GasInvoicesRestoreController {
         this._Messages = Messages;
     }
 
+    setFile($event) {
+        this.dumpFile = $event.file;
+    }
+
     restore(file) {
         this._GasInvoices.restore(
             file,

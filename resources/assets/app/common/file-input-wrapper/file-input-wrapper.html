@@ -1,0 +1,22 @@
+<div class="form-group">
+
+    <div class="input-group">
+        <input type="text" class="form-control" ng-model="$ctrl.file.name"
+               ng-readonly="true" role="button"
+               ng-click="$ctrl.onWrapperClick($event)" ng-keypress="$ctrl.onWrapperClick($event)">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.onWrapperClick($event)">
+                {{ 'CHOOSE_FILE' | translate }}
+            </button>
+        </span>
+    </div>
+
+</div>
+
+<div class="form-group" ng-hide="true">
+
+    <input type="file" ngf-select ng-model="$ctrl.file" name="file" id="{{ $ctrl.inputId }}"
+           accept="{{ $ctrl.accept }}" ngf-max-size="2MB" required ng-change="$ctrl.onChange()"
+           ngf-model-invalid="errorFile">
+
+</div>

@@ -19,7 +19,8 @@
 
             <ul class="nav navbar-nav">
                 <li>
-                    <a role="button" ui-sref="app.authenticated.dashboard">
+                    <a role="button" ui-sref="app.authenticated.dashboard"
+                       ng-click="$ctrl.collapse()">
                         <i class="fa fa-home"></i> {{ 'DASHBOARD' | translate }}
                     </a>
                 </li>
@@ -33,17 +34,20 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-readings.list">
+                            <a role="button" ui-sref="app.authenticated.gas-readings.list"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-list"></i> {{ 'LIST' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-readings.create">
+                            <a role="button" ui-sref="app.authenticated.gas-readings.create"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-readings.restore">
+                            <a role="button" ui-sref="app.authenticated.gas-readings.restore"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
                             </a>
                         </li>
@@ -60,22 +64,26 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-invoices.list">
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.list"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-list"></i> {{ 'LIST' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-invoices.aggregates">
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.aggregates"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-money"></i> {{ 'GAS_INVOICES_AGGREGATES' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-invoices.create">
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.create"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.gas-invoices.restore">
+                            <a role="button" ui-sref="app.authenticated.gas-invoices.restore"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
                             </a>
                         </li>
@@ -92,27 +100,32 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.electricity-readings.list">
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.list"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-list"></i> {{ 'LIST' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.electricity-readings.charge">
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.charge"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-money"></i> {{ 'ELECTRICITY_CHARGE' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.electricity-readings.prediction">
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.prediction"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-line-chart"></i> {{ 'ELECTRICITY_USAGE_PREDICTION' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.electricity-readings.create">
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.create"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.electricity-readings.restore">
+                            <a role="button" ui-sref="app.authenticated.electricity-readings.restore"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
                             </a>
                         </li>
@@ -129,17 +142,20 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.water-readings.list">
+                            <a role="button" ui-sref="app.authenticated.water-readings.list"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-list"></i> {{ 'LIST' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.water-readings.create">
+                            <a role="button" ui-sref="app.authenticated.water-readings.create"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-plus-square"></i> {{ 'NEW_READING' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.water-readings.restore">
+                            <a role="button" ui-sref="app.authenticated.water-readings.restore"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-cloud-upload"></i> {{ 'IMPORT' | translate }}
                             </a>
                         </li>
@@ -156,12 +172,14 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.report.list">
+                            <a role="button" ui-sref="app.authenticated.report.list"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-th-list"></i> {{ 'AVERAGES' | translate }}
                             </a>
                         </li>
                         <li>
-                            <a role="button" ui-sref="app.authenticated.report.plot">
+                            <a role="button" ui-sref="app.authenticated.report.plot"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-area-chart"></i> {{ 'PLOT' | translate }}
                             </a>
                         </li>
@@ -180,13 +198,14 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
-                            <a role="button" ui-sref="app.authenticated.backup">
+                            <a role="button" ui-sref="app.authenticated.backup" ng-click="$ctrl.collapse()">
                                 <i class="fa fa-clone"></i> {{ 'BACKUP' | translate }}
                             </a>
                         </li>
                         <li role="separator" class="divider"></li>
                         <li>
-                            <a role="button" confirm="CONFIRM_LOGOUT" ng-click="$ctrl.logout()">
+                            <a role="button" confirm="CONFIRM_LOGOUT" ng-click="$ctrl.logout()"
+                               ng-click="$ctrl.collapse()">
                                 <i class="fa fa-sign-out"></i> {{ 'SIGN_OUT' | translate }}
                             </a>
                         </li>

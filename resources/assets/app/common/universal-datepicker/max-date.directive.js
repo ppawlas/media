@@ -1,7 +1,7 @@
 const MaxDateDirective = () => {
     return {
         require: 'ngModel',
-        link(scope, elm, attrs, ctrl) {
+        link(scope, element, attrs, ctrl) {
             ctrl.$validators.maxDate = (modelValue, viewValue) => {
                 let maxDate = new Date(attrs.maxDate.replace(/"/g, ''));
 

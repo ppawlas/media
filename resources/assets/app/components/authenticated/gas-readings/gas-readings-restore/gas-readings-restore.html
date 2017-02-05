@@ -6,15 +6,12 @@
 
     <div class="gas-reading-restore-form">
 
-        <div ng-form="gasReadingRestoreForm" class="form">
+        <div ng-form="gasReadingRestoreForm" class="form-inline">
 
-            <div class="form-group" ng-class="{ 'has-error': gasReadingRestoreForm.file.$invalid }">
-
-                <input type="file" ngf-select ng-model="$ctrl.dumpFile" name="file"
-                       accept=".csv" ngf-max-size="2MB" required
-                       ngf-model-invalid="errorFile">
-
-            </div>
+            <file-input-wrapper form-name="gasReadingRestoreForm" field-name="file"
+                                accept=".csv" input-id="gas-readings-file-input"
+                                on-file-change="$ctrl.setFile($event)">
+            </file-input-wrapper>
 
             <button class="btn btn-danger" ng-click="$ctrl.restore($ctrl.dumpFile)"
                     ng-disabled="gasReadingRestoreForm.$invalid"

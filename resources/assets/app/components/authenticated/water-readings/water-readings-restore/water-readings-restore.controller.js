@@ -7,6 +7,10 @@ class WaterReadingsRestoreController {
         this._Messages = Messages;
     }
 
+    setFile($event) {
+        this.dumpFile = $event.file;
+    }
+
     restore(file) {
         this._WaterReadings.restore(
             file,

@@ -1,4 +1,4 @@
-function AppRun($state, $transitions, Messages) {
+function AppRun($state, $transitions, $window, Messages) {
     'ngInject';
 
     // show pending messages after state change success
@@ -16,6 +16,11 @@ function AppRun($state, $transitions, Messages) {
             Messages.setMessage('NOT_FOUND', 'error');
             $state.go('app.authenticate', {}, {reload: true});
         }
+    });
+
+    // after successful state transition scroll to top
+    $transitions.onSuccess({}, () => {
+        $window.scrollTo(0, 0);
     });
 }
 
