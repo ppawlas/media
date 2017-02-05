@@ -10,9 +10,9 @@ function authInterceptor(JWT, AppConstants, $window, $q) {
             return config;
         },
 
-        // handle 401
+        // handle and 400 401
         responseError: function (rejection) {
-            if (rejection.status === 401) {
+            if ((rejection.status === 400) || (rejection.status === 401)) {
                 // clear any JWT token being stored
                 JWT.destroy();
                 if (!rejection.config.url.endsWith('/authenticate/authenticate')) {

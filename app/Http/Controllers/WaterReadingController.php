@@ -118,7 +118,7 @@ class WaterReadingController extends Controller
     {
         try {
             // attempt to store the uploaded file
-            $request->file('dump')->storeAs('water-readings', $user->id . '.csv', 'dump');
+            $request->file('dump')->storeAs($user->id, 'water-readings.csv', 'dump');
             // if file has been uploaded, attempt to restore the data
             WaterReading::import($user);
         } catch (Exception $e) {

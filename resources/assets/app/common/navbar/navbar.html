@@ -180,6 +180,12 @@
 
                     <ul class="dropdown-menu" uib-dropdown-menu role="menu">
                         <li>
+                            <a role="button" ui-sref="app.authenticated.backup">
+                                <i class="fa fa-clone"></i> {{ 'BACKUP' | translate }}
+                            </a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
                             <a role="button" confirm="CONFIRM_LOGOUT" ng-click="$ctrl.logout()">
                                 <i class="fa fa-sign-out"></i> {{ 'SIGN_OUT' | translate }}
                             </a>

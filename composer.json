@@ -10,7 +10,8 @@
         "tymon/jwt-auth": "^0.5.9",
         "barryvdh/laravel-cors": "^0.8.5",
         "barryvdh/laravel-ide-helper": "^2.2",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "chumper/zipper": " 1.0.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

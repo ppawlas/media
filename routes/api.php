@@ -59,5 +59,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'jwt.auth'], function () {
         ]);
         // reports
         Route::get('reports/aggregates', 'ReportController@aggregates');
+        // dump
+        Route::get('backup/create', 'BackupController@create');
+        Route::post('backup/restore', 'BackupController@restore');
     });
 });

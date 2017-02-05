@@ -6,6 +6,7 @@ import GasInvoices from "./gas-invoices/gas-invoices";
 import GasReadings from "./gas-readings/gas-readings";
 import WaterReadings from "./water-readings/water-readings";
 import Report from "./report/report";
+import Backup from "./backup/backup";
 import AuthenticatedComponent from "./authenticated.component";
 
 let AuthenticatedModule = angular
@@ -16,7 +17,8 @@ let AuthenticatedModule = angular
         GasInvoices,
         GasReadings,
         WaterReadings,
-        Report
+        Report,
+        Backup
     ])
     .config(($stateProvider) => {
         'ngInject';

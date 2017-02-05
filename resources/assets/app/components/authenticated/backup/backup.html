@@ -1,0 +1,49 @@
+<div class="panel panel-warning">
+
+    <div class="panel-heading">
+        <strong>{{ 'BACKUP' | translate }}</strong>&nbsp;
+    </div>
+
+    <div class="backup-form">
+
+        <div ng-form="backupCreateForm" class="form">
+
+            <button class="btn btn-success" ng-click="$ctrl.create()">
+                <i class="fa fa-cloud-download"></i> {{ 'EXPORT_ALL' | translate }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <hr/>
+
+    <div class="backup-form">
+
+        <div ng-form="backupRestoreForm" class="form">
+
+            <div class="form-group" ng-class="{ 'has-error': backupRestoreForm.file.$invalid }">
+
+                <input type="file" ngf-select ng-model="$ctrl.dumpFile" name="file"
+                       accept=".zip" ngf-max-size="2MB" required
+                       ngf-model-invalid="errorFile">
+
+            </div>
+
+            <button class="btn btn-danger" ng-click="$ctrl.restore($ctrl.dumpFile)"
+                    ng-disabled="backupRestoreForm.$invalid"
+                    confirm="{{ 'CONFIRM_DATA_IMPORT' | translate }}">
+                <i class="fa fa-cloud-upload"></i> {{ 'IMPORT_ALL' | translate }}
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="panel-footer">
+        <a role="button" ui-sref="app.authenticated.dashboard" class="footer-menu-item">
+            <i class="fa fa-home"></i> {{ 'DASHBOARD' | translate }}
+        </a>
+    </div>
+
+</div>

@@ -41,9 +41,11 @@ const PLTranslations = {
     'FORBIDDEN': 'Brak dostępu do zasobu',
     'NOT_FOUND': 'Nie znaleziono zasobu',
     'EXPORT': 'Eksportuj',
+    'EXPORT_ALL': 'Wykonaj pełną kopię bazy danych',
     'DATA_EXPORTED': 'Poprawnie wyeksportowano dane',
     'DATA_EXPORT_ERROR': 'Podczas eksportu danych wystąpił błąd',
     'IMPORT': 'Importuj',
+    'IMPORT_ALL': 'Wczytaj pełną kopię bazy danych',
     'CONFIRM_DATA_IMPORT': 'Czy na pewno chcesz wczytać dane z pliku? Poprzednie odczyty zostaną usunięte.',
     'DATA_IMPORTED': 'Poprawnie zaimportowano dane',
     'DATA_IMPORT_ERROR': 'Podczas importu danych wystąpił błąd',
@@ -110,7 +112,8 @@ const PLTranslations = {
     'PREDICTION_YEARLY_COST': 'Opłata roczna - symulacja',
     'PREDICTION_TWO_MONTHS_COST': 'Opłata za 2 miesiące - symulacja',
     'CALCULATE': 'Przelicz',
-    'ENTER_DATA': 'Wprowadź dane'
+    'ENTER_DATA': 'Wprowadź dane',
+    'BACKUP': 'Kopie danych'
 };
 
 export default PLTranslations;

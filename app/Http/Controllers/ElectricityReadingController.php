@@ -121,7 +121,7 @@ class ElectricityReadingController extends Controller
     {
         try {
             // attempt to store the uploaded file
-            $request->file('dump')->storeAs('electricity-readings', $user->id . '.csv', 'dump');
+            $request->file('dump')->storeAs($user->id, 'electricity-readings.csv', 'dump');
             // if file has been uploaded, attempt to restore the data
             ElectricityReading::import($user);
         } catch (Exception $e) {

@@ -118,7 +118,7 @@ class GasInvoiceController extends Controller
     {
         try {
             // attempt to store the uploaded file
-            $request->file('dump')->storeAs('gas-invoices', $user->id . '.csv', 'dump');
+            $request->file('dump')->storeAs($user->id, 'gas-invoices.csv', 'dump');
             // if file has been uploaded, attempt to restore the data
             GasInvoice::import($user);
         } catch (Exception $e) {

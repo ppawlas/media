@@ -41,6 +41,14 @@ use Storage;
 class ElectricityReading extends Model
 {
     use ReadingTrait;
+    use DumpTrait;
+
+    /**
+     * Name of the backup file.
+     *
+     * @var string
+     */
+    protected static $fileName = 'electricity-readings';
 
     /**
      * The attributes that are mass assignable.
@@ -114,17 +122,6 @@ class ElectricityReading extends Model
 
         Log::info('Attempt to store the electricity readings dump for the user', ['user' => $user]);
         Storage::disk('dump')->put(static::getDumpPath($user), $contents);
-    }
-
-    /**
-     * Get the path to electricity readings dump for the given user.
-     *
-     * @param User $user
-     * @return string
-     */
-    public static function getDumpPath(User $user)
-    {
-        return 'electricity-readings/' . $user->id . '.csv';
     }
 
     /**
